@@ -1,0 +1,10 @@
+C:\Users\95314\Desktop\HomeWork\Homework_SF\Calculator_WindowsForm\Calculator_WindowsForms\Calculator_WindowsForms\bin\Debug\Calculator_WindowsForms.exe.config
+C:\Users\95314\Desktop\HomeWork\Homework_SF\Calculator_WindowsForm\Calculator_WindowsForms\Calculator_WindowsForms\bin\Debug\Calculator_WindowsForms.exe
+C:\Users\95314\Desktop\HomeWork\Homework_SF\Calculator_WindowsForm\Calculator_WindowsForms\Calculator_WindowsForms\bin\Debug\Calculator_WindowsForms.pdb
+C:\Users\95314\Desktop\HomeWork\Homework_SF\Calculator_WindowsForm\Calculator_WindowsForms\Calculator_WindowsForms\obj\Debug\Calculator_WindowsForms.csprojAssemblyReference.cache
+C:\Users\95314\Desktop\HomeWork\Homework_SF\Calculator_WindowsForm\Calculator_WindowsForms\Calculator_WindowsForms\obj\Debug\Calculator_WindowsForms.Form1.resources
+C:\Users\95314\Desktop\HomeWork\Homework_SF\Calculator_WindowsForm\Calculator_WindowsForms\Calculator_WindowsForms\obj\Debug\Calculator_WindowsForms.Properties.Resources.resources
+C:\Users\95314\Desktop\HomeWork\Homework_SF\Calculator_WindowsForm\Calculator_WindowsForms\Calculator_WindowsForms\obj\Debug\Calculator_WindowsForms.csproj.GenerateResource.cache
+C:\Users\95314\Desktop\HomeWork\Homework_SF\Calculator_WindowsForm\Calculator_WindowsForms\Calculator_WindowsForms\obj\Debug\Calculator_WindowsForms.csproj.CoreCompileInputs.cache
+C:\Users\95314\Desktop\HomeWork\Homework_SF\Calculator_WindowsForm\Calculator_WindowsForms\Calculator_WindowsForms\obj\Debug\Calculator_WindowsForms.exe
+C:\Users\95314\Desktop\HomeWork\Homework_SF\Calculator_WindowsForm\Calculator_WindowsForms\Calculator_WindowsForms\obj\Debug\Calculator_WindowsForms.pdb
