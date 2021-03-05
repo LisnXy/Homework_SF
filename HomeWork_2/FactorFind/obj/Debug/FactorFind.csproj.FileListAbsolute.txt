@@ -1,0 +1,7 @@
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\FactorFind\bin\Debug\ConsoleApp1.exe.config
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\FactorFind\bin\Debug\ConsoleApp1.exe
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\FactorFind\bin\Debug\ConsoleApp1.pdb
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\FactorFind\obj\Debug\FactorFind.csprojAssemblyReference.cache
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\FactorFind\obj\Debug\FactorFind.csproj.CoreCompileInputs.cache
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\FactorFind\obj\Debug\ConsoleApp1.exe
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\FactorFind\obj\Debug\ConsoleApp1.pdb

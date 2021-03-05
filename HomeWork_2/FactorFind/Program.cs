@@ -47,19 +47,16 @@ namespace HomeWork_2
 
         public static bool IsPri(int num2)
         {
-            if (num2 <= 0)
+            if(num2<=0)
             {
-                Console.WriteLine("请输入正确的数值!");
                 return false;
             }
-            else if (num2 == 1)
-                return false;
-            int i = num2 - 1;
-            while(i>1)
+            int i = 2;
+            while(i<Math.Sqrt(num2))
             {
                 if (num2 % i == 0)
                     return false;
-                i--;
+                i++;
             }
             return true;
         }
