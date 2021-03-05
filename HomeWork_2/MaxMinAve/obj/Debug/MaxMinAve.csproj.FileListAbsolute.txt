@@ -1,0 +1,7 @@
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\MaxMinAve\bin\Debug\MaxMinAve.exe.config
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\MaxMinAve\bin\Debug\MaxMinAve.exe
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\MaxMinAve\bin\Debug\MaxMinAve.pdb
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\MaxMinAve\obj\Debug\MaxMinAve.csprojAssemblyReference.cache
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\MaxMinAve\obj\Debug\MaxMinAve.csproj.CoreCompileInputs.cache
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\MaxMinAve\obj\Debug\MaxMinAve.exe
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\MaxMinAve\obj\Debug\MaxMinAve.pdb
