@@ -1,0 +1,7 @@
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\PriFInd\bin\Debug\PriFInd.exe.config
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\PriFInd\bin\Debug\PriFInd.exe
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\PriFInd\bin\Debug\PriFInd.pdb
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\PriFInd\obj\Debug\PriFInd.csprojAssemblyReference.cache
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\PriFInd\obj\Debug\PriFInd.csproj.CoreCompileInputs.cache
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\PriFInd\obj\Debug\PriFInd.exe
+C:\Users\95314\Desktop\HomeWork\Homework_SF\HomeWork_2\PriFInd\obj\Debug\PriFInd.pdb
