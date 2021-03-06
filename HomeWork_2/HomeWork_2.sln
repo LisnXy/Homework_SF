@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactorFind", "FactorFind\Fa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriFInd", "PriFInd\PriFInd.csproj", "{2CEEAA22-F181-4379-9185-AA55B0C46FB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Judge", "Judge\Judge.csproj", "{A3232711-F0E8-4760-996B-5D211182EB1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{2CEEAA22-F181-4379-9185-AA55B0C46FB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CEEAA22-F181-4379-9185-AA55B0C46FB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CEEAA22-F181-4379-9185-AA55B0C46FB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3232711-F0E8-4760-996B-5D211182EB1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3232711-F0E8-4760-996B-5D211182EB1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3232711-F0E8-4760-996B-5D211182EB1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3232711-F0E8-4760-996B-5D211182EB1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
