@@ -19,9 +19,9 @@ namespace MaxMinAve
                 target[index] = Convert.ToDouble(input);
                 index++;
             }
-            MinCheck(target,index+1);
+            MinCheck(target,index);
             MaxCheck(target);
-            Average(target,index+1);
+            Average(target,index);
             Console.ReadKey();
         }
         public static void MaxCheck(double[] target)
@@ -32,15 +32,15 @@ namespace MaxMinAve
                 if (Max < tem)
                     Max = tem;
             }
-            Console.WriteLine("Max" + Max);
+            Console.WriteLine("Max:" + Max);
         }
         public static void MinCheck(double[] target,int counter)
         {
             double Min = target[0];
-            for (; counter>0;counter--)
+            for (int i = 0; i<=counter - 1;i++)
             {
-                if (Min > target[counter -1])
-                    Min = target[counter - 1];
+                if (Min > target[i])
+                    Min = target[i];
             }
             Console.WriteLine("Min:" + Min);
         }
@@ -51,7 +51,7 @@ namespace MaxMinAve
             {
                 sum += temp;
             }
-            Console.WriteLine("Average" + sum/counter);
+            Console.WriteLine("Average:" + sum/counter);
         }
     }
 }
