@@ -1,0 +1,16 @@
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_3\bin\Debug\net5.0\HomeWork_3.exe
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_3\bin\Debug\net5.0\HomeWork_3.deps.json
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_3\bin\Debug\net5.0\HomeWork_3.runtimeconfig.json
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_3\bin\Debug\net5.0\HomeWork_3.runtimeconfig.dev.json
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_3\bin\Debug\net5.0\HomeWork_3.dll
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_3\bin\Debug\net5.0\ref\HomeWork_3.dll
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_3\bin\Debug\net5.0\HomeWork_3.pdb
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_3\obj\Debug\net5.0\HomeWork_3.csprojAssemblyReference.cache
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_3\obj\Debug\net5.0\HomeWork_3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_3\obj\Debug\net5.0\HomeWork_3.AssemblyInfoInputs.cache
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_3\obj\Debug\net5.0\HomeWork_3.AssemblyInfo.cs
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_3\obj\Debug\net5.0\HomeWork_3.csproj.CoreCompileInputs.cache
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_3\obj\Debug\net5.0\HomeWork_3.dll
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_3\obj\Debug\net5.0\ref\HomeWork_3.dll
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_3\obj\Debug\net5.0\HomeWork_3.pdb
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_3\obj\Debug\net5.0\HomeWork_3.genruntimeconfig.cache
