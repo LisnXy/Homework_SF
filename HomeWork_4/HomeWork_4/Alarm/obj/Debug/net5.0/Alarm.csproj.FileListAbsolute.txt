@@ -1,0 +1,16 @@
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_4\HomeWork_4\Alarm\bin\Debug\net5.0\Alarm.exe
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_4\HomeWork_4\Alarm\bin\Debug\net5.0\Alarm.deps.json
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_4\HomeWork_4\Alarm\bin\Debug\net5.0\Alarm.runtimeconfig.json
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_4\HomeWork_4\Alarm\bin\Debug\net5.0\Alarm.runtimeconfig.dev.json
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_4\HomeWork_4\Alarm\bin\Debug\net5.0\Alarm.dll
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_4\HomeWork_4\Alarm\bin\Debug\net5.0\ref\Alarm.dll
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_4\HomeWork_4\Alarm\bin\Debug\net5.0\Alarm.pdb
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_4\HomeWork_4\Alarm\obj\Debug\net5.0\Alarm.csprojAssemblyReference.cache
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_4\HomeWork_4\Alarm\obj\Debug\net5.0\Alarm.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_4\HomeWork_4\Alarm\obj\Debug\net5.0\Alarm.AssemblyInfoInputs.cache
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_4\HomeWork_4\Alarm\obj\Debug\net5.0\Alarm.AssemblyInfo.cs
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_4\HomeWork_4\Alarm\obj\Debug\net5.0\Alarm.csproj.CoreCompileInputs.cache
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_4\HomeWork_4\Alarm\obj\Debug\net5.0\Alarm.dll
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_4\HomeWork_4\Alarm\obj\Debug\net5.0\ref\Alarm.dll
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_4\HomeWork_4\Alarm\obj\Debug\net5.0\Alarm.pdb
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_4\HomeWork_4\Alarm\obj\Debug\net5.0\Alarm.genruntimeconfig.cache
