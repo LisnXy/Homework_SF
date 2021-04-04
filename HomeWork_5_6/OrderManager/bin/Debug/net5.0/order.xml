@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Order>
+    <merchandise>
+      <OrderDetial>
+        <Name>Mac</Name>
+        <Cost>7299</Cost>
+      </OrderDetial>
+      <OrderDetial>
+        <Name>Apple Watch</Name>
+        <Cost>3199</Cost>
+      </OrderDetial>
+    </merchandise>
+    <Id>477523</Id>
+    <Cost>10498</Cost>
+    <Client>Lisn</Client>
+  </Order>
+  <Order>
+    <merchandise>
+      <OrderDetial>
+        <Name>Mate P40</Name>
+        <Cost>6199</Cost>
+      </OrderDetial>
+    </merchandise>
+    <Id>213244</Id>
+    <Cost>6199</Cost>
+    <Client>Jack</Client>
+  </Order>
+</ArrayOfOrder>
