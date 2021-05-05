@@ -1,0 +1,556 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="origin-when-crossorigin" />
+    <meta name="description" content="C#Winform编程中，跨线程直接更新UI控件的做法是不正确的，会时常出现“线程间操作无效: 从不是创建控件的线程访问它”的异常。处理跨线程更新Winform UI控件常用的方法有3种：&#xD;&#xA;1. 通" />
+    <meta property="og:description" content="C#Winform编程中，跨线程直接更新UI控件的做法是不正确的，会时常出现“线程间操作无效: 从不是创建控件的线程访问它”的异常。处理跨线程更新Winform UI控件常用的方法有3种：&#xD;&#xA;1. 通" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>C# Winform 跨线程更新UI控件常用方法汇总 - marshal-m - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="//common.cnblogs.com/favicon.svg" type="image/svg+xml" />
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=zS6-e1bxywlu3kpHvpr1J6MySwya3ztFtEnS7RYQ0Fk" />
+    <link id="MainCss" rel="stylesheet" href="/skins/book/bundle-book.min.css?v=jeIWFbREsBywulLasTpkQaxky-lM6nSP4v7QSo89d0Y" />
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/book/bundle-book-mobile.min.css?v=VScK2RSKmlDZjHFFPrzU6xRmTprJestCE7-RZpLjaKU" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/marshal-m/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/marshal-m/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/marshal-m/wlwmanifest.xml" />
+    <script>
+        var currentBlogId = 151990;
+        var currentBlogApp = 'marshal-m';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'BOOK';
+        var visitorUserId = '';
+    </script>
+        <script>
+            var currentPostDateAdded = '2013-07-20 05:38';
+        </script>
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=CJtNAb53Ex2fBes_h70ZUTUv5aZTxcvvM7mCnA44svE"></script>
+    
+    
+    
+</head>
+<body class="has-navbar has-bannerbar">
+    <a name="top"></a>
+        <a target="_blank" href="https://www.aliyun.com/minisite/goods?userCode=swh7dvlt" onclick="ga('send', 'event', 'Link', 'click', 'aliyun-cps-blog-bannerbar-pc')">
+            <div class="bannerbar aliyun forpc" style="background-size: contain;background-image: url(https://img2020.cnblogs.com/blog/35695/202104/35695-20210428221933214-737067094.jpg)">
+            </div>
+        </a>
+        <div id="bannerbar" class="bannerbar-mobile formobile">
+            <a href="https://www.aliyun.com/minisite/goods?userCode=swh7dvlt" target="_blank" onclick="ga('send', 'event', 'Link', 'click', 'aliyun-cps-blog-bannerbar-mobile')">
+                <img src="https://img2020.cnblogs.com/blog/35695/202104/35695-20210428213541700-642740375.jpg" alt="" />
+            </a>
+        </div>
+    <div id="top_nav" class="navbar forpc">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding"><a href="https://www.cnblogs.com/" title="开发者的网上家园"><img src="/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="博客园Logo" /></a></li>
+                <li><a href="/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-sitehome')">首页</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-q')">博问</a></li>
+                <li><a id="nav_brandzone" href="https://brands.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-brands')">专区</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://edu.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-edu')">班级</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search" action="https://zzk.cnblogs.com/s" method="get">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="text" tabindex="3" />
+                        <button type="submit" id="zzk_search_button">
+                            <img src="/images/aggsite/search.svg" alt="搜索" />
+                        </button>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="/images/aggsite/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="/images/aggsite/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="/images/aggsite/message.svg?v=J0WS2P2iPgaIVgXxcAhliw4AFZIpaTWxtdoNAv9eiCA" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="/images/aggsite/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <img id="navbar_lite_mode_on" src="/images/lite-mode-check.svg" class="hide" /><span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup/">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    
+    <script type="text/javascript">
+	try {
+		if (screen.availWidth > 1200) {
+			document.getElementById("MainCss").href = '/skins/book/bundle-book-2.min.css';
+		}
+	} catch (e) { }
+</script>
+
+<div id="header">
+<div id="HeaderTitle">
+<div id="Title">
+<a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/marshal-m/">雁过无痕,叶落无声</a>
+
+</div>
+<div id="subTitle">还是让博客记录下我成长的足迹吧</div>
+</div>
+</div>
+
+
+<div id="main">
+	<div id="post_detail">
+    <div class="post">
+        <h2>
+            
+<a id="cb_post_title_url" class="postTitle2 vertical-middle" href="https://www.cnblogs.com/marshal-m/p/3201051.html">
+    <span>C# Winform 跨线程更新UI控件常用方法汇总</span>
+    
+
+
+
+</a>
+
+        </h2>
+            <div id="cnblogs_post_description" style="display: none">
+        C#Winform编程中，跨线程直接更新UI控件的做法是不正确的，会时常出现“线程间操作无效: 从不是创建控件的线程访问它”的异常。处理跨线程更新Winform UI控件常用的方法有3种：
+1. 通过UI线程的SynchronizationContext的Post/Send方法更新；
+2. 通过UI控件的Invoke/BegainInvoke方法更新；
+3. 通过设置窗体属性，取消线程安全检查来避免"跨线程操作异常"（非线程安全，建议不使用）。
+下文中对以上3种方法应用进行举例说明，希望能对初识C# Winform的同学们有些帮助
+    </div>
+<div id="cnblogs_post_body" class="blogpost-body blogpost-body-html">
+<h2>概述</h2>
+<p>C#Winform编程中，跨线程直接更新UI控件的做法是不正确的，会时常出现“线程间操作无效: 从不是创建控件的线程访问它”的异常。处理跨线程更新Winform UI控件常用的方法有4种：<br><a href="#synccontext">1. 通过UI线程的SynchronizationContext的Post/Send方法更新；</a><br><a href="#invoke">2. 通过UI控件的Invoke/BeginInvoke方法更新；</a></p>
+<p><a href="#backgroundworker">3. 通过BackgroundWorker取代Thread执行异步操作；</a><br><a href="#unsafe">4. 通过设置窗体属性，取消线程安全检查来避免"跨线程操作异常"（非线程安全，建议不使用）。</a><br>下文中对以上3种方法应用进行举例说明，希望能对初识C# Winform的同学们有些帮助。</p>
+<p>成文表分享交流之意，惶恐水平有限，文中<span style="color: rgba(0, 0, 0, 1)">理解和表述有错误之处还请大家多被批评指正。</span></p>
+<p><span style="color: rgba(0, 0, 0, 1)">更新记录：</span></p>
+<p><span style="color: rgba(0, 0, 0, 1)">2018年2月3日，根据网友评论提示更新错别字，BegainInvoke=》BeginInvoke。</span></p>
+<h2>正文</h2>
+<p><strong>1. <a name="synccontext"></a>通过UI线程的SynchronizationContext的Post/Send方法更新</strong></p>
+<p>用法：&nbsp;</p>
+<div class="cnblogs_code">
+<pre>        <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">共分三步
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">第一步：获取UI线程同步上下文（在窗体构造函数或FormLoad事件中）</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;summary&gt;</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span><span style="color: rgba(0, 128, 0, 1)"> UI线程的同步上下文
+        </span><span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;/summary&gt;</span>
+        SynchronizationContext m_SyncContext = <span style="color: rgba(0, 0, 255, 1)">null</span><span style="color: rgba(0, 0, 0, 1)">;
+        </span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 0, 1)"> Form1()
+        {
+            InitializeComponent();
+            </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">获取UI线程同步上下文</span>
+            <strong>m_SyncContext =<span style="color: rgba(0, 0, 0, 1)"> SynchronizationContext.Current;
+            </span></strong><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">Control.CheckForIllegalCrossThreadCalls = false;</span>
+<span style="color: rgba(0, 0, 0, 1)">        }
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">第二步：定义线程的主体方法</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;summary&gt;</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span><span style="color: rgba(0, 128, 0, 1)"> 线程的主体方法
+        </span><span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;/summary&gt;</span>
+        <span style="color: rgba(0, 0, 255, 1)">private</span> <span style="color: rgba(0, 0, 255, 1)">void</span><span style="color: rgba(0, 0, 0, 1)"> ThreadProcSafePost()
+        {
+            </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">...执行线程任务
+
+            </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">在线程中更新UI（通过UI线程同步上下文m_SyncContext）</span>
+            <strong>m_SyncContext.Post</strong>(<strong>SetTextSafePost</strong>, <span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">This text was set safely by SynchronizationContext-Post.</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);
+
+            </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">...执行线程其他任务</span>
+<span style="color: rgba(0, 0, 0, 1)">        }
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">第三步：定义更新UI控件的方法</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;summary&gt;</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span><span style="color: rgba(0, 128, 0, 1)"> 更新文本框内容的方法
+        </span><span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;/summary&gt;</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;param name="text"&gt;&lt;/param&gt;</span>
+        <span style="color: rgba(0, 0, 255, 1)">private</span> <span style="color: rgba(0, 0, 255, 1)">void</span> <strong>SetTextSafePost</strong>(<span style="color: rgba(0, 0, 255, 1)">object</span><span style="color: rgba(0, 0, 0, 1)"> text)
+        {
+            </span><span style="color: rgba(0, 0, 255, 1)">this</span>.textBox1.Text =<span style="color: rgba(0, 0, 0, 1)"> text.ToString();
+        }
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">之后,启动线程</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;summary&gt;</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span><span style="color: rgba(0, 128, 0, 1)"> 启动线程按钮事件
+        </span><span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;/summary&gt;</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;param name="sender"&gt;&lt;/param&gt;</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;param name="e"&gt;&lt;/param&gt;</span>
+        <span style="color: rgba(0, 0, 255, 1)">private</span> <span style="color: rgba(0, 0, 255, 1)">void</span> setSafePostBtn_Click(<span style="color: rgba(0, 0, 255, 1)">object</span><span style="color: rgba(0, 0, 0, 1)"> sender, EventArgs e)
+        {
+            </span><span style="color: rgba(0, 0, 255, 1)">this</span>.demoThread = <span style="color: rgba(0, 0, 255, 1)">new</span> Thread(<span style="color: rgba(0, 0, 255, 1)">new</span> ThreadStart(<span style="color: rgba(0, 0, 255, 1)">this</span><span style="color: rgba(0, 0, 0, 1)">.ThreadProcSafePost));
+            </span><span style="color: rgba(0, 0, 255, 1)">this</span><span style="color: rgba(0, 0, 0, 1)">.demoThread.Start();
+        }</span></pre>
+</div>
+<p>说明：三处加粗部分是关键。该方法的主要原理是：在线程执行过程中，需要更新到UI控件上的数据不再直接更新，而是通过UI线程上下文的Post/Send方法，将数据以异步/同步消息的形式发送到UI线程的消息队列；UI线程收到该消息后，根据消息是异步消息还是同步消息来决定通过异步/同步的方式调用SetTextSafePost方法直接更新自己的控件了。</p>
+<p>在本质上，向UI线程发送的消息并是不简单数据，而是一条委托调用命令。</p>
+<p><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">在线程中更新UI（通过UI线程同步上下文m_SyncContext）</span><br><strong>m_SyncContext.Post</strong>(<strong>SetTextSafePost</strong>, <span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">This text was set safely by SynchronizationContext-Post.</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);<br>可以这样解读这行代码：向UI线程的同步上下文（m_SyncContext）中提交一个异步消息(UI线程，你收到消息后以异步的方式执行委托,调用方法<strong>SetTextSafePost</strong>，参数是“this text was ....”).</span></p>
+<p>&nbsp;</p>
+<p><strong><a name="invoke"></a>2.通过UI控件的Invoke/BeginInvoke方法更新</strong></p>
+<p>用法：与方法1类似，可分为三个步骤。</p>
+<div class="cnblogs_code">
+<pre>        <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 共分三步
+
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 第一步：定义委托类型
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 将text更新的界面控件的委托类型</span>
+        <span style="color: rgba(0, 0, 255, 1)">delegate</span> <span style="color: rgba(0, 0, 255, 1)">void</span> <strong>SetTextCallback</strong>(<span style="color: rgba(0, 0, 255, 1)">string</span><span style="color: rgba(0, 0, 0, 1)"> text);
+
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">第二步：定义线程的主体方法</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;summary&gt;</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span><span style="color: rgba(0, 128, 0, 1)"> 线程的主体方法
+        </span><span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;/summary&gt;</span>
+        <span style="color: rgba(0, 0, 255, 1)">private</span> <span style="color: rgba(0, 0, 255, 1)">void</span><span style="color: rgba(0, 0, 0, 1)"> ThreadProcSafe()
+        {
+            </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">...执行线程任务
+
+            </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">在线程中更新UI（通过控件的.Invoke方法）</span>
+            <span style="color: rgba(0, 0, 255, 1)">this</span>.<strong>SetText</strong>(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">This text was set safely.</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);
+
+            </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">...执行线程其他任务</span>
+<span style="color: rgba(0, 0, 0, 1)">        }
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">第三步：定义更新UI控件的方法</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;summary&gt;</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span><span style="color: rgba(0, 128, 0, 1)"> 更新文本框内容的方法
+        </span><span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;/summary&gt;</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;param name="text"&gt;&lt;/param&gt;</span>
+        <span style="color: rgba(0, 0, 255, 1)">private</span> <span style="color: rgba(0, 0, 255, 1)">void</span> <strong>SetText</strong>(<span style="color: rgba(0, 0, 255, 1)">string</span><span style="color: rgba(0, 0, 0, 1)"> text)
+        {
+            </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> InvokeRequired required compares the thread ID of the 
+            </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> calling thread to the thread ID of the creating thread. 
+            </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> If these threads are different, it returns true. </span>
+            <span style="color: rgba(0, 0, 255, 1)">if</span> (<span style="color: rgba(0, 0, 255, 1)">this</span><span style="color: rgba(0, 0, 0, 1)">.textBox1.InvokeRequired)//如果调用控件的线程和创建创建控件的线程不是同一个则为True
+            {
+                </span><span style="color: rgba(0, 0, 255, 1)">while</span> (!<span style="color: rgba(0, 0, 255, 1)">this</span><span style="color: rgba(0, 0, 0, 1)">.textBox1.IsHandleCreated)
+                {
+                    </span><strong><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">解决窗体关闭时出现“访问已释放句柄“的异常</span>
+</strong>                    <span style="color: rgba(0, 0, 255, 1)">if</span> (<span style="color: rgba(0, 0, 255, 1)">this</span>.textBox1.Disposing || <span style="color: rgba(0, 0, 255, 1)">this</span><span style="color: rgba(0, 0, 0, 1)">.textBox1.IsDisposed)
+                        </span><span style="color: rgba(0, 0, 255, 1)">return</span><span style="color: rgba(0, 0, 0, 1)">;
+                }
+                SetTextCallback d </span>= <span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> SetTextCallback(SetText);
+                </span><strong><span style="color: rgba(0, 0, 255, 1)">this</span></strong>.<strong>textBox1.Invoke</strong>(d, <span style="color: rgba(0, 0, 255, 1)">new</span> <span style="color: rgba(0, 0, 255, 1)">object</span><span style="color: rgba(0, 0, 0, 1)">[] { text });
+            }
+            </span><span style="color: rgba(0, 0, 255, 1)">else</span><span style="color: rgba(0, 0, 0, 1)">
+            {
+                </span><span style="color: rgba(0, 0, 255, 1)">this</span>.textBox1.Text =<span style="color: rgba(0, 0, 0, 1)"> text;
+            }
+        }
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">之后,启动线程</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;summary&gt;</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span><span style="color: rgba(0, 128, 0, 1)"> 启动线程按钮事件
+        </span><span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;/summary&gt;</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;param name="sender"&gt;&lt;/param&gt;</span>
+        <span style="color: rgba(128, 128, 128, 1)">///</span> <span style="color: rgba(128, 128, 128, 1)">&lt;param name="e"&gt;&lt;/param&gt;</span>
+        <span style="color: rgba(0, 0, 255, 1)">private</span> <span style="color: rgba(0, 0, 255, 1)">void</span><span style="color: rgba(0, 0, 0, 1)"> setTextSafeBtn_Click(
+            </span><span style="color: rgba(0, 0, 255, 1)">object</span><span style="color: rgba(0, 0, 0, 1)"> sender,
+            EventArgs e)
+        {
+            </span><span style="color: rgba(0, 0, 255, 1)">this</span>.demoThread =
+                <span style="color: rgba(0, 0, 255, 1)">new</span> Thread(<span style="color: rgba(0, 0, 255, 1)">new</span> ThreadStart(<span style="color: rgba(0, 0, 255, 1)">this</span><span style="color: rgba(0, 0, 0, 1)">.ThreadProcSafe));
+
+            </span><span style="color: rgba(0, 0, 255, 1)">this</span><span style="color: rgba(0, 0, 0, 1)">.demoThread.Start();
+        }</span></pre>
+</div>
+<p>说明：这个方法是目前跨线程更新UI使用的主流方法，使用控件的Invoke/BeginInvoke方法，将委托转到UI线程上调用，实现线程安全的更新。原理与方法1类似，本质上还是把线程中要提交的消息，通过控件句柄调用委托交到UI线程中去处理。</p>
+<p><span style="color: rgba(0, 128, 0, 1)">解决窗体关闭时出现“访问已释放句柄“的异常</span>部分代码参考<a href="http://www.cnblogs.com/slyzly/articles/2121436.html" target="_blank">博客园-事理同学的文章</a>。</p>
+<p>&nbsp;</p>
+<p><strong>3.<a name="backgroundworker"></a>通过BackgroundWorker取代Thread执行异步操作</strong></p>
+<p>用法：</p>
+<div class="cnblogs_code">
+<pre>        <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">共分三步
+
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">第一步：定义BackgroundWorker对象，并注册事件（执行线程主体、执行UI更新事件）</span>
+        <span style="color: rgba(0, 0, 255, 1)">private</span> BackgroundWorker backgroundWorker1 =<span style="color: rgba(0, 0, 255, 1)">null</span><span style="color: rgba(0, 0, 0, 1)">;
+        </span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 0, 1)"> Form1()
+        {
+            InitializeComponent();
+</span><span style="color: rgba(0, 0, 0, 1)"><br>           
+            backgroundWorker1 </span>= <span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> System.ComponentModel.BackgroundWorker();
+            </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">设置报告进度更新</span>
+            <strong>backgroundWorker1.WorkerReportsProgress = <span style="color: rgba(0, 0, 255, 1)">true</span><span style="color: rgba(0, 0, 0, 1)">;
+            </span></strong><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">注册线程主体方法</span>
+            backgroundWorker1.DoWork += <span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> DoWorkEventHandler(backgroundWorker1_DoWork);
+            </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">注册更新UI方法</span>
+            backgroundWorker1.ProgressChanged += <span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> ProgressChangedEventHandler(backgroundWorker1_ProgressChanged);
+            </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);</span>
+<span style="color: rgba(0, 0, 0, 1)">        }
+
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">第二步：定义执行线程主体事件
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">线程主体方法</span>
+        <span style="color: rgba(0, 0, 255, 1)">public</span> <span style="color: rgba(0, 0, 255, 1)">void</span> backgroundWorker1_DoWork(<span style="color: rgba(0, 0, 255, 1)">object</span><span style="color: rgba(0, 0, 0, 1)"> sender, DoWorkEventArgs e)
+        {
+            </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">...执行线程任务
+
+            </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">在线程中更新UI（通过ReportProgress方法）</span>
+            <strong>backgroundWorker1.ReportProgress</strong>(<span style="color: rgba(128, 0, 128, 1)">50</span>, <span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">This text was set safely by BackgroundWorker.</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);
+
+            </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">...执行线程其他任务</span>
+<span style="color: rgba(0, 0, 0, 1)">        }
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">第三步：定义执行UI更新事件
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">UI更新方法</span>
+        <span style="color: rgba(0, 0, 255, 1)">public</span> <span style="color: rgba(0, 0, 255, 1)">void</span> backgroundWorker1_ProgressChanged(<span style="color: rgba(0, 0, 255, 1)">object</span><span style="color: rgba(0, 0, 0, 1)"> sender, ProgressChangedEventArgs e)
+        {
+            </span><span style="color: rgba(0, 0, 255, 1)">this</span>.textBox1.Text =<span style="color: rgba(0, 0, 0, 1)"> e.UserState.ToString();
+        }
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">之后，启动线程
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">启动backgroundWorker</span>
+        <span style="color: rgba(0, 0, 255, 1)">private</span> <span style="color: rgba(0, 0, 255, 1)">void</span> setTextBackgroundWorkerBtn_Click(<span style="color: rgba(0, 0, 255, 1)">object</span><span style="color: rgba(0, 0, 0, 1)"> sender, EventArgs e)
+        {
+            </span><span style="color: rgba(0, 0, 255, 1)">this</span><span style="color: rgba(0, 0, 0, 1)">.backgroundWorker1.RunWorkerAsync();
+        }</span></pre>
+</div>
+<p>说明：C# Winform中执行异步任务时，BackgroundWorker是个不错的选择。它是EAP（Event based Asynchronous Pattern）思想的产物，DoWork用来执行异步任务，在任务执行过程中/执行完成后，我们可以通过ProgressChanged，ProgressCompleteded事件进行线程安全的UI更新。</p>
+<p>需要注意的是：<span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">设置报告进度更新</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>backgroundWorker1.WorkerReportsProgress = <span style="color: rgba(0, 0, 255, 1)">true</span><span style="color: rgba(0, 0, 0, 1)">;<br></span></strong>默认情况下BackgroundWorker是不报告进度的，需要显示设置报告进度属性。</p>
+<p>&nbsp;</p>
+<p><strong><a name="unsafe"></a>4. 通过设置窗体属性，取消线程安全检查来避免"线程间操作无效异常"（非线程安全，建议不使用）</strong></p>
+<p>用法：将Control类的静态属性CheckForIllegalCrossThreadCalls为false。</p>
+<div class="cnblogs_code">
+<pre>      <span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 0, 1)"> Form1()
+        {
+            InitializeComponent();
+            </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">指定不再捕获对错误线程的调用</span>
+            Control.CheckForIllegalCrossThreadCalls = <span style="color: rgba(0, 0, 255, 1)">false</span><span style="color: rgba(0, 0, 0, 1)">;
+        }</span></pre>
+</div>
+<p>说明：通过设置CheckForIllegalCrossThreadCalls属性，可以指示是否捕获线程间非安全操作异常。该属性值默认为ture，即线程间非安全操作是要捕获异常的（"线程间操作无效"异常）。通过设置该属性为false简单的屏蔽了该异常。Control.CheckForIllegalCrossThreadCalls的注释如下</p>
+<div class="cnblogs_code">
+<pre>        <span style="color: rgba(0, 128, 0, 1)">//</span>
+        <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 摘要:
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">     获取或设置一个值，该值指示是否捕获对错误线程的调用，这些调用在调试应用程序时访问控件的 System.Windows.Forms.Control.Handle
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">     属性。
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span>
+        <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 返回结果:
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">     如果捕获了对错误线程的调用，则为 true；否则为 false。</span>
+<span style="color: rgba(0, 0, 0, 1)">        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [SRDescription(</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">ControlCheckForIllegalCrossThreadCalls</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">)]
+        [Browsable(</span><span style="color: rgba(0, 0, 255, 1)">false</span><span style="color: rgba(0, 0, 0, 1)">)]
+        </span><span style="color: rgba(0, 0, 255, 1)">public</span> <span style="color: rgba(0, 0, 255, 1)">static</span> <span style="color: rgba(0, 0, 255, 1)">bool</span> CheckForIllegalCrossThreadCalls { <span style="color: rgba(0, 0, 255, 1)">get</span>; <span style="color: rgba(0, 0, 255, 1)">set</span>; }    </pre>
+</div>
+<h2><br>综述：</h2>
+<p>文中介绍的4种方法，前三种是线程安全的&nbsp;，可在实际项目中因地制宜的使用。最后一种方法是非线程安全的，初学者可以实验体会但不建议使用它。</p>
+<p>下面列表对比一下这四种方法&nbsp;</p>
+<table style="width: 830px" border="0" align="left">
+<tbody>
+<tr style="background-color: rgba(195, 200, 202, 1)">
+<td><strong><span style="font-family: 宋体; font-size: 10.5pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA">方法</span></strong></td>
+<td><strong><span style="font-family: 宋体; font-size: 10.5pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA">线程安全</span></strong></td>
+<td><strong><span style="font-family: 宋体; font-size: 10.5pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA">支持异步</span><span style="font-family: &quot;Calibri&quot;, &quot;sans-serif&quot;; font-size: 10.5pt; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA" lang="EN-US">/</span><span style="font-family: 宋体; font-size: 10.5pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA">同步</span></strong></td>
+<td><strong><span style="font-family: 宋体; font-size: 10.5pt; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA">其他</span></strong></td>
+
+
+</tr>
+<tr>
+<td><span style="font-size: 12px">UI Sync<strong>Context</strong>更新</span></td>
+<td><span style="font-family: 宋体; font-size: 12px; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA">是</span></td>
+<td><span style="font-family: &quot;Calibri&quot;, &quot;sans-serif&quot;; font-size: 12px; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA" lang="EN-US">Post/Send</span></td>
+<td><span style="font-size: 12px"><span style="font-family: 宋体; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA">尽量在窗体构造函数、</span><span style="font-family: &quot;Calibri&quot;, &quot;sans-serif&quot;; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA" lang="EN-US">FormLoad</span><span style="font-family: 宋体; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA">中获取同步上下文</span></span></td>
+
+
+</tr>
+<tr>
+<td><span style="font-size: 12px"><span style="font-family: 宋体; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA">控件</span><span style="font-family: &quot;Calibri&quot;, &quot;sans-serif&quot;; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA" lang="EN-US">Invoke</span></span></td>
+<td><span style="font-family: 宋体; font-size: 12px; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA">是</span></td>
+<td><span style="font-family: &quot;Calibri&quot;, &quot;sans-serif&quot;; font-size: 12px; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA" lang="EN-US">control.Invoke/BeginInvoke</span></td>
+<td><span style="font-family: 宋体; font-size: 12px; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA">注意检查控件句柄是否已释放</span></td>
+
+
+</tr>
+<tr>
+<td><span style="font-size: 12px"><span style="font-family: &quot;Calibri&quot;, &quot;sans-serif&quot;; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA" lang="EN-US">BackgroundWorker</span><span style="font-family: 宋体; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA">更新</span></span></td>
+<td><span style="font-family: 宋体; font-size: 12px; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA">是</span></td>
+<td>
+<p align="left"><span style="font-size: 12px">ProgressChanged、RunWorkerCompleted</span></p>
+
+
+<span style="font-size: 12px">事件同步更新</span></td>
+<td><span style="font-family: 宋体; font-size: 12px; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA">报告进度</span></td>
+
+
+</tr>
+<tr>
+<td>
+<p><span style="font-size: 12px"><strong>CheckForIllegalCrossThreadCalls</strong></span></p>
+
+
+<span style="font-size: 12px">取消跨线程调用检查</span></td>
+<td><span style="font-family: 宋体; font-size: 12px; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA">否</span></td>
+<td><span style="font-size: 12px">同步更新</span></td>
+<td><span style="font-family: 宋体; font-size: 12px; mso-ascii-font-family: Calibri; mso-ascii-theme-font: minor-latin; mso-fareast-theme-font: minor-fareast; mso-hansi-font-family: Calibri; mso-hansi-theme-font: minor-latin; mso-bidi-font-size: 11.0pt; mso-bidi-font-family: 'Times New Roman'; mso-bidi-theme-font: minor-bidi; mso-ansi-language: EN-US; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA">简单，不建议使用</span></td>
+
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+<p><span style="font-size: 14px">&nbsp;</span></p>
+<p><span style="font-size: 14px">&nbsp;</span></p>
+<p><span style="font-size: 14px">&nbsp;</span></p>
+<p>&nbsp;</p>
+<h2>&nbsp;</h2>
+<h2>&nbsp;</h2>
+<h2>&nbsp;</h2>
+<p>&nbsp;</p>
+<h2><strong>参考资料：</strong></h2>
+<p class="title" style="font: normal 2.76em / 1.167 &quot;Segoe UI&quot;, &quot;Lucida Grande&quot;, Verdana, Arial, Helvetica, sans-serif; color: rgba(0, 0, 0, 1); text-transform: none; text-indent: 0; letter-spacing: normal; margin-top: 0; word-spacing: 0; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px"><span style="font-size: 14px"><span style="color: rgba(0, 0, 0, 1); text-transform: none; line-height: 19px; text-indent: 0; letter-spacing: normal; font-family: verdana, arial, helvetica, sans-serif; font-style: normal; font-variant: normal; font-weight: normal; word-spacing: 0; float: none; display: inline !important; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: rgba(255, 255, 255, 1); -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px">瑞奇特（Jeffrey Richter），</span>《clr var C#》</span></p>
+<p class="title" style="font: normal 2.76em / 1.167 &quot;Segoe UI&quot;, &quot;Lucida Grande&quot;, Verdana, Arial, Helvetica, sans-serif; color: rgba(0, 0, 0, 1); text-transform: none; text-indent: 0; letter-spacing: normal; margin-top: 0; word-spacing: 0; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px"><span style="font-size: 14px">MSDN， <a href="http://msdn.microsoft.com/query/dev11.query?appId=Dev11IDEF1&amp;l=EN-US&amp;k=k(EHInvalidOperation.WinForms.IllegalCrossThreadCall);k(TargetFrameworkMoniker-.NETFramework,Version%3Dv2.0);k(DevLang-csharp)&amp;rd=true" target="_blank">How to: Make Thread-Safe Calls to Windows Forms Controls</a></span></p>
+<p class="title" style="font: normal 2.76em / 1.167 &quot;Segoe UI&quot;, &quot;Lucida Grande&quot;, Verdana, Arial, Helvetica, sans-serif; color: rgba(0, 0, 0, 1); text-transform: none; text-indent: 0; letter-spacing: normal; margin-top: 0; word-spacing: 0; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px"><span style="font-size: 14px">事理，<a href="http://www.cnblogs.com/slyzly/articles/2121436.html" target="_blank">C#线程中安全访问控件（重用委托，避免繁复的delegate,Invoke）总结</a></span></p>
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+    <div id="blog_post_info"></div>
+    <div class="clear"></div>
+    <div id="post_next_prev"></div>
+</div>
+        <p class="postfoot">
+            posted on 
+<span id="post-date">2013-07-20 17:38</span>&nbsp;
+<a href="https://www.cnblogs.com/marshal-m/">marshal-m</a>&nbsp;
+阅读(<span id="post_view_count">64793</span>)&nbsp;
+评论(<span id="post_comment_count">10</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=3201051" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(3201051);return false;">收藏</a>
+        </p>
+    </div>
+</div>
+
+
+<script src="https://common.cnblogs.com/highlight/10.3.1/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 151990, cb_blogApp = 'marshal-m', cb_blogUserGuid = '8ea46779-46c1-e211-8d02-90b11c0b17d6';
+    var cb_entryId = 3201051, cb_entryCreatedDate = '2013-07-20 17:38', cb_postType = 1;
+    updatePostStats(
+        [cb_entryId],
+        function(id, count) { $("#post_view_count").text(count) },
+        function(id, count) { $("#post_comment_count").text(count) })
+    zoomManager.apply("#cnblogs_post_body img:not(.code_img_closed):not(.code_img_opened)");
+</script>
+<a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+    <div id="comment_form_container"></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"></div>
+    <div id="opt_under_post"></div>
+    <div id="cnblogs_c1" class="under-post-card">
+        <div id='div-gpt-ad-1592365906576-0' style='width: 300px; height: 250px;'></div>
+    </div>
+    <div id="under_post_card1"></div>
+    <div id="cnblogs_c2" class="under-post-card">
+        <div id='div-gpt-ad-1592366332455-0' style='width: 468px; height: 60px;'></div>
+    </div>
+    <div id="under_post_card2"></div>
+    <div id="HistoryToday" class="under-post-card"></div>
+    <script type="text/javascript">
+       var commentManager = new blogCommentManager();
+       commentManager.renderComments(0);
+       fixPostBody();
+       deliverBigBanner();
+setTimeout(function() { incrementViewCount(cb_entryId); }, 50);       deliverT2();
+       deliverC1C2();
+       loadNewsAndKb();
+       loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);       LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+       GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+       loadOptUnderPost();
+       GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+
+
+
+	<p id="footer">
+	Powered by: 
+	<br />
+	
+	<a href="https://www.cnblogs.com/" id="footer_site_link">博客园</a>
+	<br />
+	Copyright &copy; 2021 marshal-m
+<br /><span id="poweredby">Powered by .NET 5.0 on Kubernetes</span>
+
+</p>
+
+
+</div>
+<div id="rightmenu">
+	
+		<div id="blog-calendar" style="display:none"></div><script>loadBlogDefaultCalendar();</script>
+		
+<h3>导航</h3>
+<ul>
+			<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+			<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/marshal-m/">
+首页</a>
+</li>
+			<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+			<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/marshal-m">
+联系</a></li>
+			<li>
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/marshal-m/rss/">
+订阅</a>
+<a id="blog_nav_rss_image" href="https://www.cnblogs.com/marshal-m/rss/">
+    <img src="/skins/book/images/xml.gif" alt="订阅" />
+</a></li>
+			<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div id="blog_stats_place_holder"><script>loadBlogStats();</script></div>
+		<div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+<div id="sidebar_c3"></div>
+		<div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+	
+</div>
+			
+			
+			
+			
+			 
+
+	
+
+
+    
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8L-rpLgFVEJMgssCVvNUAjtON_nOJfhXbPcM34dn8iuOspLzmQMNgy9n5t5SHRWL-BfjCrgq2fHeMeAVyXUrWe0RgO9FKJ29YxWshzbHe0rMilDvdrq4a0vnZPWoo7_0crzUUD73w7QiW1VsDr7RJZY" />
+</body>
+</html>

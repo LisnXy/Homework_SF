@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace WinFormApp
@@ -22,10 +23,19 @@ namespace WinFormApp
 
         private void button_Start_Click(object sender, EventArgs e)
         {
-            crawler.Crawl();
-            bindingSource_Results.ResetBindings(true);
-            bindingSource_Exception.ResetBindings(true);
+            Thread thread1 = new Thread(() => { 
+                crawler.Crawl();
+                if (this.InvokeRequired)
+                {
+                 Action<bool> action = bindingSource_Results.ResetBindings;
+                    action += bindingSource_Exception.ResetBindings;
+                    this.Invoke(action, true);
+                }
+            });
+            thread1.Start();      
         }
+
+        
 
         private void textBox_Target_TextChanged(object sender, EventArgs e)
         {
