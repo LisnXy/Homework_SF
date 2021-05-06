@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,16 +24,20 @@ namespace WinFormApp
 
         private void button_Start_Click(object sender, EventArgs e)
         {
-            Thread thread1 = new Thread(() => { 
+            Stopwatch sw = new Stopwatch();           
+            Thread thread1 = new Thread(() => {
+                sw.Start();
                 crawler.Crawl();
                 if (this.InvokeRequired)
                 {
                  Action<bool> action = bindingSource_Results.ResetBindings;
                     action += bindingSource_Exception.ResetBindings;
                     this.Invoke(action, true);
-                }
+                    Console.WriteLine(sw.ElapsedMilliseconds);
+                }                
+                sw.Stop();
             });
-            thread1.Start();      
+            thread1.Start();            
         }
 
         

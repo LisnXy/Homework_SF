@@ -10,15 +10,18 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace WinFormApp {
-  class SimpleCrawler {
-    private Hashtable urls = new Hashtable();
-    public int count = 0;
-    public string target = " ";
-    public List<Url> results = new List<Url>();
+    class SimpleCrawler {
+        private Hashtable urls = new Hashtable();
+        public int count = 0;
+        public string target = " ";
+        public List<Url> results = new List<Url>();
         public List<Url> exceptions = new List<Url>();
+        public Task[] tasks = { };
 
 
     public void Crawl() {
+            this.results.Clear();
+            this.exceptions.Clear();
             if (urls[target] == null) urls[target] = false;      
       while (true) {
         string current = null;
@@ -27,12 +30,13 @@ namespace WinFormApp {
           current = url;
         }
 
-        if (current == null || count > 10) break;       
-        string html = DownLoad(current); // 下载
-        urls[current] = true;
-                this.results.Add(new Url(current));
-        count++;
-        Parse(html);//解析,并加入新的链接        
+        if (current == null || count > 10) break;
+                tasks.Append(Task.Run(() => { string html = DownLoad(current);
+                    urls[current] = true;
+                    this.results.Add(new Url(current));
+                    count++;
+                    Parse(html);
+                } ));     
       }
     }
 
