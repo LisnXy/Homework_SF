@@ -95,10 +95,11 @@ namespace OrderManager
             {
                 if (temp == order){
                     orders.Remove(temp);
-                    Console.WriteLine("成功删除订单");
-                    return;
                 }
-                Console.WriteLine("未找到需要删除的订单");
+                else
+                {
+                    return;
+                }           
             }
         }
 

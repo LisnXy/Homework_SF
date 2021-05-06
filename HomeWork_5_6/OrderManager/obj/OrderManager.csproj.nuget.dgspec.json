@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5\\OrderManager\\OrderManager.csproj": {}
+    "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5_6\\OrderManager\\OrderManager.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5\\OrderManager\\OrderManager.csproj": {
+    "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5_6\\OrderManager\\OrderManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5\\OrderManager\\OrderManager.csproj",
+        "projectUniqueName": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5_6\\OrderManager\\OrderManager.csproj",
         "projectName": "OrderManager",
-        "projectPath": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5\\OrderManager\\OrderManager.csproj",
+        "projectPath": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5_6\\OrderManager\\OrderManager.csproj",
         "packagesPath": "C:\\Users\\Lisn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5\\OrderManager\\obj\\",
+        "outputPath": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5_6\\OrderManager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lisn\\AppData\\Roaming\\NuGet\\NuGet.Config",
