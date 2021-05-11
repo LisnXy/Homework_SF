@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5\\OrderManagerTests\\OrderManagerTests.csproj": {}
+    "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5_6\\OrderManagerTests\\OrderManagerTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5\\OrderManagerTests\\OrderManagerTests.csproj": {
+    "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5_6\\OrderManagerTests\\OrderManagerTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5\\OrderManagerTests\\OrderManagerTests.csproj",
+        "projectUniqueName": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5_6\\OrderManagerTests\\OrderManagerTests.csproj",
         "projectName": "OrderManagerTests",
-        "projectPath": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5\\OrderManagerTests\\OrderManagerTests.csproj",
+        "projectPath": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5_6\\OrderManagerTests\\OrderManagerTests.csproj",
         "packagesPath": "C:\\Users\\Lisn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5\\OrderManagerTests\\obj\\",
+        "outputPath": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5_6\\OrderManagerTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lisn\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": ".NETCoreApp,Version=v5.0",
             "projectReferences": {
-              "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5\\OrderManager\\OrderManager.csproj": {
-                "projectPath": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5\\OrderManager\\OrderManager.csproj"
+              "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5_6\\OrderManager\\OrderManager.csproj": {
+                "projectPath": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5_6\\OrderManager\\OrderManager.csproj"
               }
             }
           }
@@ -56,6 +56,10 @@
               "target": "Package",
               "version": "[16.7.1, )"
             },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.24, )"
+            },
             "coverlet.collector": {
               "target": "Package",
               "version": "[1.3.0, )"
@@ -80,14 +84,14 @@
         }
       }
     },
-    "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5\\OrderManager\\OrderManager.csproj": {
+    "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5_6\\OrderManager\\OrderManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5\\OrderManager\\OrderManager.csproj",
+        "projectUniqueName": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5_6\\OrderManager\\OrderManager.csproj",
         "projectName": "OrderManager",
-        "projectPath": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5\\OrderManager\\OrderManager.csproj",
+        "projectPath": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5_6\\OrderManager\\OrderManager.csproj",
         "packagesPath": "C:\\Users\\Lisn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5\\OrderManager\\obj\\",
+        "outputPath": "C:\\Users\\Lisn\\Documents\\WorkSpace\\Homework_SF\\HomeWork_5_6\\OrderManager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lisn\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,7 +1,0 @@
-C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_8\orderManager_4\obj\Debug\OrderManager.csproj.CoreCompileInputs.cache
-C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_8\orderManager_4\bin\Debug\orderManager_4.exe.config
-C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_8\orderManager_4\bin\Debug\orderManager_4.exe
-C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_8\orderManager_4\bin\Debug\orderManager_4.pdb
-C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_8\orderManager_4\obj\Debug\orderManager_4.exe
-C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_8\orderManager_4\obj\Debug\orderManager_4.pdb
-C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_8\orderManager_4\obj\Debug\OrderManager.csprojAssemblyReference.cache

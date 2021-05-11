@@ -1,0 +1,1342 @@
+﻿
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <link rel="canonical" href="https://blog.csdn.net/tensorflowforum/article/details/116135250"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="report" content='{"pid": "blog", "spm":"1001.2101"}'>
+    <meta name="referrer" content="always">
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+    <meta name="applicable-device" content="pc">
+    <link  href="https://g.csdnimg.cn/static/logo/favicon32.ico"  rel="shortcut icon" type="image/x-icon" />
+    <title>最新进展｜TensorFlow Quantum 一岁啦！_tensorflowforum的博客-CSDN博客</title>
+    <script>
+      (function(){ 
+        var el = document.createElement("script"); 
+        el.src = "https://s3a.pstatp.com/toutiao/push.js?1abfa13dfe74d72d41d83c86d240de427e7cac50c51ead53b2e79d40c7952a23ed7716d05b4a0f683a653eab3e214672511de2457e74e99286eb2c33f4428830"; 
+        el.id = "ttzz"; 
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(el, s);
+      })(window)
+    </script>
+        <meta name="keywords" content="最新进展｜TensorFlow Quantum 一岁啦！">
+    <meta name="description" content="文 / Michael Broughton、Alan Ho、Masoud Mohseni去年，我们在2020 TensorFlow 开发者峰会和Google AI 博客中发布了TensorFlow Quantum (TFQ)。将 TensorFlow 提供的所有工具和功能引入到量子计算领域，我们协助一些研究取得了成功。在本文中，我们将回顾在过去一年 TensorFlow Quantum 的经历以及取得的进步。我们也会讨论量子计算和机器学习在 TensorFlow Quantum 中的未来。...">
+    <script src="//g.csdnimg.cn/tingyun/1.8.5/blog.js" type='text/javascript'></script>
+        <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/release/blogv2/dist/pc/css/corporate_blog_enter-9682de6c2a.min.css">
+    <script src="https://csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var isCorporate = true;//注释删除enterprise
+        var username =  "tensorflowforum";
+        var skinImg = "white";
+        var blog_address = "https://blog.csdn.net/tensorflowforum";
+        var currentUserName = "";
+        var isOwner = false;
+        var loginUrl = "http://passport.csdn.net/account/login?from=https://blog.csdn.net/tensorflowforum/article/details/116135250";
+        var blogUrl = "https://blog.csdn.net/";
+        var avatar = "https://profile.csdnimg.cn/6/3/1/3_tensorflowforum";
+        var articleTitle = "最新进展｜TensorFlow Quantum 一岁啦！";
+        var articleDesc = "文 / Michael Broughton、Alan Ho、Masoud Mohseni去年，我们在2020 TensorFlow 开发者峰会和Google AI 博客中发布了TensorFlow Quantum (TFQ)。将 TensorFlow 提供的所有工具和功能引入到量子计算领域，我们协助一些研究取得了成功。在本文中，我们将回顾在过去一年 TensorFlow Quantum 的经历以及取得的进步。我们也会讨论量子计算和机器学习在 TensorFlow Quantum 中的未来。...";
+        var articleTitles = "最新进展｜TensorFlow Quantum 一岁啦！_tensorflowforum的博客-CSDN博客";
+        var nickName = "TensorFlow 社区";
+        var articleDetailUrl = "https://blog.csdn.net/tensorflowforum/article/details/116135250";
+        if(window.location.host.split('.').length == 3) {
+            blog_address = blogUrl + username;
+        }
+        var skinStatus = 'White';
+        var blogStaticHost = "https://csdnimg.cn/release/blogv2/"
+    </script>
+    <script src="https://g.csdnimg.cn/??fixed-sidebar/1.1.6/fixed-sidebar.js" type="text/javascript"></script>
+    <script src='//g.csdnimg.cn/common/csdn-report/report.js' type='text/javascript'></script>
+    <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/public/sandalstrap/1.4/css/sandalstrap.min.css">
+    <style>
+        .MathJax, .MathJax_Message, .MathJax_Preview{
+            display: none
+        }
+    </style>
+    <script src="https://dup.baidustatic.com/js/ds.js"></script>
+</head>
+<body class="nodata company_blog" style="">
+        <script>
+            var toolbarSearchExt = '{"landingWord":[],"queryWord":"","tag":["版本"],"title":"最新进展｜TensorFlow Quantum 一岁啦！"}';
+        </script>
+    <script src="https://g.csdnimg.cn/common/csdn-toolbar/csdn-toolbar.js" type="text/javascript"></script>
+    <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+<link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/pc/css/blog_code-01256533b5.min.css">
+<link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/chart-3456820cac.css" />
+<div class="main_father clearfix d-flex justify-content-center" style="height:100%;"> 
+    <div class="container clearfix" id="mainBox">
+        <main>
+<script type="text/javascript">
+    var blogSensitiveWords = "";
+    function getQueryString(name) {   
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象  
+      var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+      if( r != null ) return decodeURIComponent( r[2] ); return '';   
+    }
+    function stripscript(s){ 
+      var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？%]") 
+      var rs = ""; 
+      for (var i = 0; i < s.length; i++) { 
+        rs = rs+s.substr(i, 1).replace(pattern, ''); 
+      } 
+      return rs; 
+    }
+    var blogHotWords = stripscript(getQueryString('utm_term')).length > 1 ? stripscript(getQueryString('utm_term')) : ''
+</script>
+<div class="blog-content-box">
+    <div class="article-header-box">
+        <div class="article-header">
+            <div class="article-title-box">
+                <h1 class="title-article" id="articleContentId">最新进展｜TensorFlow Quantum 一岁啦！</h1>
+            </div>
+            <div class="article-info-box">
+                <div class="article-bar-top">
+                    <img class="article-type-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/original.png" alt="">
+                    <div class="bar-content">
+                    <a class="follow-nickName " href="https://blog.csdn.net/tensorflowforum" target="_blank" rel="noopener">TensorFlow 社区</a>
+                    <span class="time">2021-04-30 15:21:41</span>
+                    <img class="article-read-img article-heard-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/articleReadEyes.png" alt="">
+                    <span class="read-count">1380</span>
+                    <a id="blog_detail_zk_collection" class="un-collection" data-report-click='{"mod":"popu_823","spm":"1001.2101.3001.4232","ab":"new"}'>
+                        <img class="article-collect-img article-heard-img un-collect-status isdefault" style="display:inline-block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollect.png" alt="">
+                        <img class="article-collect-img article-heard-img collect-status isactive" style="display:none" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollectionActive.png" alt="">
+                        <span class="name">收藏</span>
+                        <span class="get-collection">
+                        </span>
+                    </a>
+                    </div>
+                </div>
+                <div class="blog-tags-box">
+                    <div class="tags-box artic-tag-box">
+                            <span class="label">文章标签：</span>
+                                <a data-report-click='{"mod":"popu_626","spm":"1001.2101.3001.4223","strategy":"版本","ab":"new"}' class="tag-link" href="https://so.csdn.net/so/search/s.do?q=版本&amp;t=blog&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=" target="_blank" rel="noopener">版本</a>
+                    </div>
+                </div>
+                <div class="slide-content-box">
+                    <div class="article-copyright">
+                        <div class="creativecommons">
+                            版权声明：本文为博主原创文章，遵循<a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"> CC 4.0 BY-SA </a>版权协议，转载请附上原文出处链接和本声明。
+                        </div>
+                        <div class="article-source-link">
+                            本文链接：<a href="https://blog.csdn.net/tensorflowforum/article/details/116135250" target="_blank">https://blog.csdn.net/tensorflowforum/article/details/116135250</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="operating">
+                    <a class="href-article-edit slide-toggle">版权</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="csdn-shop-window-top" class="csdn-shop-window-common" style="margin-top:18px;padding:0"></div>
+    <article class="baidu_pl">
+        <div id="article_content" class="article_content clearfix">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/ck_htmledit_views-b5506197d8.css">
+                <div id="content_views" class="htmledit_views">
+                    <p style="text-align:center;"><img alt="图片" src="https://img-blog.csdnimg.cn/img_convert/2dd33761e675903ab76e770e52373429.gif" /></p> 
+<p><em>文 / Michael Broughton、Alan Ho、Masoud Mohseni</em></p> 
+<p> </p> 
+<p>去年&#xff0c;我们在 <a href="http://mp.weixin.qq.com/s?__biz&#61;MzU1OTMyNDcxMQ&#61;&#61;&amp;mid&#61;2247487912&amp;idx&#61;1&amp;sn&#61;197f975465c5a10b8f3146485053b121&amp;chksm&#61;fc185ae0cb6fd3f68bebf3f658b1f6b403da2c84809cd6a67fad6f33ae0db6f1ba160cf93f4d&amp;scene&#61;21#wechat_redirect">2020 TensorFlow 开发者峰会</a>和 Google AI 博客中发布了<a href="http://mp.weixin.qq.com/s?__biz&#61;MzU1OTMyNDcxMQ&#61;&#61;&amp;mid&#61;2247487901&amp;idx&#61;2&amp;sn&#61;bf00bbc09e5e1f415d1809d6333b5d5b&amp;chksm&#61;fc185ad5cb6fd3c3e7f77e9ccfa77b1aae083ab033b43711e84ee7f09b4ea7b0c4dbad5bfdfb&amp;scene&#61;21#wechat_redirect">TensorFlow Quantum (TFQ)</a>。将 TensorFlow 提供的所有工具和功能引入到量子计算领域&#xff0c;我们协助一些研究取得了成功。在本文中&#xff0c;我们将回顾在过去一年 TensorFlow Quantum 的经历以及取得的进步。我们也会讨论量子计算和机器学习在 TensorFlow Quantum 中的未来。</p> 
+<ul><li> <p>Google AI 博客<br /><a href="https://ai.googleblog.com/2020/03/announcing-tensorflow-quantum-open.html">https://ai.googleblog.com/2020/03/announcing-tensorflow-quantum-open.html</a></p> </li></ul>
+<p> </p> 
+<p>自发布 TensorFlow Quantum 以来&#xff0c;我们很高兴见证学术界以及 Alphabet 内部使用该库的频率不断增加&#xff0c;尤其是 Google 的 Quantum AI 团队。去年&#xff0c;在量子机器学习或量子-经典混合模型&#xff08;包括判别式模型和生成式模型&#xff09;中使用 TensorFlow Quantum 的许多研究文章被发布。在交流有关这两个领域的想法时&#xff0c;我们还发现大家正在重构经典机器学习中的高级学习算法&#xff0c;如量子强化学习、分层和神经架构搜索。我们利用 TensorFlow 的可扩展性和提供的工具&#xff0c;通过大量量子比特和门来运行数值实验&#xff0c;从而更如现实发现未来实用的算法。</p> 
+<ul><li> <p>TensorFlow Quantum<br /><a href="https://tensorflow.google.cn/quantum">https://tensorflow.google.cn/quantum</a></p> </li></ul>
+<p> </p> 
+<p>如果您想查看相关内容&#xff0c;以下是几篇关于使用 TFQ 的文章&#xff1a;</p> 
+<ul><li> <p>《量子机器学习中数据的强大之处》<em>(Power of data in quantum machine learning)</em>&#xff08;Google&#xff0c;判别式&#xff0c;30 个量子比特&#xff09;<br /><a href="https://arxiv.org/abs/2011.01938">https://arxiv.org/abs/2011.01938</a></p> </li><li> <p>《量子卷积神经网络不存在贫瘠高原》<em>(Absence of Barren Plateaus in Quantum Convolutional Neural Networks)</em>&#xff08;LANL&#xff0c;判别式&#xff0c;26 个量子比特&#xff09;</p> <p><a href="https://arxiv.org/pdf/2011.02966">https://arxiv.org/pdf/2011.02966</a></p> </li><li> <p>《基于量子哈密顿算符的模型和变分量子热化算法》<em>(Quantum Hamiltonian-Based Models and the Variational Quantum Thermalizer Algorithm)</em>&#xff08;Alphabet X&#xff0c;生成式&#xff0c;16 个量子比特&#xff09;<br /><a href="https://arxiv.org/pdf/1910.02071.pdf">https://arxiv.org/pdf/1910.02071.pdf</a></p> </li><li> <p>《高效量子计算的纠缠诊断》<em>(Entanglement Diagnostics for Efficient Quantum Computation)</em>&#xff08;Princeton/Tel-Aviv U.&#xff0c;生成式&#xff0c;20 个量子比特&#xff09;<br /><a href="https://arxiv.org/pdf/2102.12534">https://arxiv.org/pdf/2102.12534</a></p> </li><li> <p>《量子神经网络的分层学习》<em>(Layerwise learning for quantum neural networks)</em>&#xff08;VW/Google&#xff0c;判别式&#xff0c;18 个量子比特&#xff09;<br /><a href="https://arxiv.org/pdf/2006.14904">https://arxiv.org/pdf/2006.14904</a></p> </li><li> <p>《微分量子架构搜索》<em>(Differentiable Quantum Architecture Search)</em>&#xff08;Tencent&#xff0c;神经架构搜索&#xff0c;8 个量子比特&#xff09;<br /><a href="https://arxiv.org/pdf/2010.08561">https://arxiv.org/pdf/2010.08561</a></p> </li></ul>
+<p> </p> 
+<p>我们近期发布的有关“量化量子机器学习的计算优势”的论文中&#xff0c;实验是以 PetaFLOP/s 吞吐量规模展开的。对于经典机器学习而言&#xff0c;这并不是什么新鲜事&#xff0c;但和推出 TensorFlow Quantum 之前的量子机器学习实验规模相比&#xff0c;这代表了巨大的进步。对于量子计算和机器学习所共同拥有的未来&#xff0c;我们为 TensorFlow Quantum 带来如此积极的影响而感到高兴。</p> 
+<ul><li> <p>我们近期发布的有关“量化量子机器学习的计算优势”的论文<br /><a href="https://arxiv.org/abs/2011.01938">https://arxiv.org/abs/2011.01938</a></p> </li></ul>
+<p> </p> 
+<p>学术界并不是能够将机器学习和量子计算结合到一起的唯一领域。在过去的一年里&#xff0c;TensorFlow Quantum 团队成员在支持 Refik Anadol Studios 的艺术作品“量子记忆”方面提供了帮助。它结合 2019 年经典实验以外的随机电路样本数据并采用 StyleGAN&#xff0c;创作出了一些非常迷人的艺术作品。</p> 
+<p style="text-align:center;"><img alt="图片" src="https://img-blog.csdnimg.cn/img_convert/39ba2ca38a3a4d04426d5a8381847670.png" /></p> 
+<p>在 NGV 放置“量子记忆”</p> 
+<ul><li> <p>量子记忆<br /><a href="https://refikanadol.com/works/quantummemories/">https://refikanadol.com/works/quantummemories/</a></p> </li><li> <p>经典实验<br /><a href="https://www.nature.com/articles/s41586-019-1666-5">https://www.nature.com/articles/s41586-019-1666-5</a></p> </li><li> <p>StyleGAN<br /><a href="https://arxiv.org/abs/1812.04948">https://arxiv.org/abs/1812.04948</a></p> </li></ul>
+<p> </p> 
+<h1><strong>未来计划</strong></h1> 
+<p>我们即将发布 TensorFlow Quantum 0.5.0&#xff0c;此版本会为分布式工作负载、以量子为中心的大量新功能以及一些细微的性能提升提供更多支持。未来&#xff0c;我们希望这些功能能够让我们的用户在量子计算和机器学习的复杂性和范围方面继续开疆拓土&#xff0c;最终帮助引领开创性的量子计算实验&#xff08;而不仅仅是模拟&#xff09;。在发布 TensorFlow Quantum 时&#xff0c;我们的最终目标是能够借此探索量子在机器学习领域中的优势。随着时间的推移&#xff0c;我们希望凭借 QML 研究社区的不断努力与奉献&#xff0c;让世界实现此目标。</p> 
+<ul><li> <p>TensorFlow Quantum 0.5.0<br /><a href="https://github.com/tensorflow/quantum">https://github.com/tensorflow/quantum</a></p> </li><li> <p>探索量子在机器学习领域中的优势<br /><a href="https://arxiv.org/abs/1801.00862">https://arxiv.org/abs/1801.00862</a></p> </li></ul>
+<p>量子机器学习仍是一个非常新的领域&#xff0c;要实现目标还需要很长时间的努力。但在过去的一年里&#xff0c;我们看到研究社区在许多不同的领域都取得了惊人的进步&#xff0c;我们对未来将会实现的成果充满期待。</p> 
+<p> </p> 
+<p>如果您想详细了解 <em>本文提及</em> 的相关内容&#xff0c;请参阅以下文档。这些文档深入探讨了这篇文章中提及的许多主题&#xff1a;</p> 
+<ul><li> <p>判别式模型<br /><a href="https://arxiv.org/pdf/2011.02966">https://arxiv.org/pdf/2011.02966</a></p> </li><li> <p>生成式模型<br /><a href="https://meetings.aps.org/Meeting/MAR21/Session/S32.10">https://meetings.aps.org/Meeting/MAR21/Session/S32.10</a></p> </li><li> <p>强化学习<br /><a href="https://arxiv.org/abs/2008.07524">https://arxiv.org/abs/2008.07524</a></p> </li><li> <p>分层<br /><a href="https://arxiv.org/abs/2006.14904">https://arxiv.org/abs/2006.14904</a></p> </li><li> <p>神经架构搜索<br /><a href="https://arxiv.org/abs/2010.08561">https://arxiv.org/abs/2010.08561</a></p> </li></ul>
+<p> </p> 
+<p><strong>如果你想及时了解 TensorFlow Quantum 的最新进展&#xff0c;请点击下方链接访问 TensorFlow 中国官网。</strong></p> 
+<p><a href="https://tensorflow.google.cn"><span style="color:#3399ea;">https://tensorflow.google.cn</span></a></p>
+                </div>
+        </div>
+    </article>
+</div>
+            <div id="csdn-shop-window" class="csdn-shop-window-common"></div>
+<div class="more-toolbox" id="toolBarBox">
+    <span id="fixedBar"></span>
+    <div class="left-toolbox">
+        <ul class="toolbox-list">
+            <li class="tool-item tool-item-size tool-active is-like" id="is-like"><a>
+            <img style="display:none;" id="is-like-imgactive-animation-like" class="animation-dom active-animation" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarThumbUpactive.png" alt="">
+            <img class="isactive" style="display:none" id="is-like-imgactive" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarThumbUpactive.png" alt="">
+            <img class="isdefault" style="display:block" id="is-like-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarThumbUp.png" alt="">   
+            <span class="name" id="is-like-span">点赞</span>
+            <span id="spanCount" class="count">
+            </span>
+            </a></li>
+            <li class="tool-item tool-item-size tool-active tool-item-comment">
+                <a href="#commentBox">
+                    <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarComment.png" alt="">
+                    <img class="isactive" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCommentactive.png" style="display:none;" alt="">
+                    <span class="name">评论</span>
+                    <span class="count">
+                    </span>
+                </a>
+            </li>
+            <li class="tool-item tool-item-size tool-active tool-QRcode" id="tool-share">
+                <a href="javascript:;" data-report-click='{"mod":"1582594662_002","spm":"1001.2101.3001.4129","ab":"new"}'>
+                    <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarShare.png" alt="">
+                    <img class="isactive" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarShareactive.png" style="display:none;" alt="">
+                    <span class="name">分享</span>
+                </a>
+                <div class="QRcode" id="tool-QRcode" style="left:-92%;">
+                    <span id="QRcode-close">x</span>
+                    <p class="title">
+                    海报分享
+                    </p>
+                    <div id='shareCode'></div>
+                    <p>
+                    扫一扫，分享海报
+                    </p>
+                </div>
+            </li>
+            <li class="tool-item tool-item-size tool-active is-collection ">
+                <a href="javascript:;" data-report-click='{"mod":"popu_824","spm":"1001.2101.3001.4130","ab":"new"}'>
+                    <img style="display:none" id="is-collection-img-collection" class="animation-dom active-animation" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollectionActive.png" alt="">
+                    <img class="isdefault" id="is-collection-img" style="display:block" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollect.png" alt="">
+                    <img class="isactive" id="is-collection-imgactive" style="display:none" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarCollectionActive.png" alt="">
+                    <span class="name" id="is-collection">收藏</span>
+                    <span class="count get-collection" id="get-collection">
+                    </span>
+                </a>
+            </li>
+            <li class="tool-item tool-item-size tool-active tool-more">
+              <a class="article-report">
+                <img class="isdefault" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarReport.png" alt="">
+                <img class="isactive" src="https://csdnimg.cn/release/blogv2/dist/pc/img/tobarReportactive.png" style="display:none;" alt="">
+                <span class="name">举报</span>
+              </a>
+            </li>
+            <li class="tool-item">
+                    <a class="tool-attend tool-bt-button tool-bt-attend" href="javascript:;" data-report-view='{"mod":"1592215036_002","spm":"1001.2101.3001.4232","extend1":"关注"}'>关注</a>
+                <a class="tool-item-follow active-animation" style="display:none;">关注</a>
+            </li>
+            <li class="tool-item">
+                    <p class="company active" id="health-companies" href="javascript:;" >一键三连</p>
+            </li>
+        </ul>
+        <div style="display:flex" class="right-toolbox">
+         </div>
+         <div class="hot-word-tip-box">
+          <span class="hot-word-text">已标记关键词</span>
+          <span class="hot-word-count"></span> 
+          <span class="hot-word-bar"></span>
+          <span class="hot-word-clear">清除标记</span>
+        </div>
+    </div>  
+</div>
+<script type=text/javascript crossorigin src="https://csdnimg.cn/release/phoenix/production/qrcode-7c90a92189.min.js"></script>
+<script src="//g.csdnimg.cn/??sharewx/1.2.1/sharewx.js" type="text/javascript"></script>
+<script type="text/javascript" crossorigin src="https://g.csdnimg.cn/collection-box/2.0.3/collection-box.js"></script>
+<a id="commentBox" name="commentBox"></a>
+<div class="comment-box">
+	<div class="comment-edit-box d-flex">
+		<a id="commentsedit"></a>
+		<div class="user-img">
+			<a href="javascript:void(0);" >
+				<img class="show_loginbox" src="https://g.csdnimg.cn/static/user-img/anonymous-User-img.png">
+			</a>
+		</div>
+		<form id="commentform">
+			<img class="comment-sofa-flag" src="https://csdnimg.cn/release/blogv2/dist/pc/img/commentFlag@2x.png">
+      <textarea class="comment-content" name="comment_content" id="comment_content" placeholder="优质评论可以帮助作者获得更高权重" maxlength="1000"></textarea>
+			<div class="comment-emoticon"><img class="comment-emoticon-img" data-url="https://csdnimg.cn/release/blogv2/dist/pc/img/" src="https://csdnimg.cn/release/blogv2/dist/pc/img/emoticon.png" alt="表情包"></div> 
+      <span class="comment-emoticon-tip">插入表情</span>
+      <div class="comment-emoticon-box">
+        <div class="comment-emoticon-img-box">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:001.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/001.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:002.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/002.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:003.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/003.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:004.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/004.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:005.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/005.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:006.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/006.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:007.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/007.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:008.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/008.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:009.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/009.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:010.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/010.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:011.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/011.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:012.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/012.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:013.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/013.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:014.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/014.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:015.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/015.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:016.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/016.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:017.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/017.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:018.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/018.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:019.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/019.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:020.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/020.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:021.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/021.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:022.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/022.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:023.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/023.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:024.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/024.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:025.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/025.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:026.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/026.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:027.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/027.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:028.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/028.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:029.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/029.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:030.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/030.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:031.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/031.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:032.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/032.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:033.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/033.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:034.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/034.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:035.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/035.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:036.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/036.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:037.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/037.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:038.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/038.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:039.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/039.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:040.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/040.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:041.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/041.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:042.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/042.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:043.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/043.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:044.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/044.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:045.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/045.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:046.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/046.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:047.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/047.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:048.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/048.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:049.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/049.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:050.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/050.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:051.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/051.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:052.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/052.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:053.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/053.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:054.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/054.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:055.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/055.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:056.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/056.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:057.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/057.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:058.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/058.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:059.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/059.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:060.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/060.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:061.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/061.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:062.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/062.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:063.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/063.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:064.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/064.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:065.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/065.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:066.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/066.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:067.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/067.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:068.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/068.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:069.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/069.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:070.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/070.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:071.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/071.png">
+            <img class="emoticon-monkey-img" data-emoticon="[face]emoji:072.png[/face]" src="https://g.csdnimg.cn/static/face/emoji/072.png">
+        </div>
+      </div>
+      <div class="opt-box">
+				<div id="ubbtools" class="add_code">
+					<a href="#insertcode" code="code" target="_self"><i class="icon iconfont icon-daima"></i></a>
+				</div>
+				<input type="hidden" id="comment_replyId" name="comment_replyId">
+				<input type="hidden" id="article_id" name="article_id" value="116135250">
+				<input type="hidden" id="comment_userId" name="comment_userId" value="">
+				<input type="hidden" id="commentId" name="commentId" value="">
+				<div class="dropdown" id="myDrap">
+					<a class="dropdown-face d-flex align-items-center" data-toggle="dropdown" role="button"
+						aria-haspopup="true" aria-expanded="false">
+						<div class="txt-selected text-truncate">添加代码片</div>
+						<svg class="icon d-block" width="200px" height="100.00px" viewBox="0 0 2048 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path  d="M597.33333292 298.666667h853.333334L1023.99999992 725.333333 597.33333292 298.666667z"  /></svg>
+					</a>
+					<ul class="dropdown-menu" id="commentCode" aria-labelledby="drop4">
+						<li><a data-code="html">HTML/XML</a></li>
+						<li><a data-code="objc">objective-c</a></li>
+						<li><a data-code="ruby">Ruby</a></li>
+						<li><a data-code="php">PHP</a></li>
+						<li><a data-code="csharp">C</a></li>
+						<li><a data-code="cpp">C++</a></li>
+						<li><a data-code="javascript">JavaScript</a></li>
+						<li><a data-code="python">Python</a></li>
+						<li><a data-code="java">Java</a></li>
+						<li><a data-code="css">CSS</a></li>
+						<li><a data-code="sql">SQL</a></li>
+						<li><a data-code="plain">其它</a></li>
+					</ul>
+				</div>
+				<div class="right-box" id="rightBox" data-type="2">
+							<span id="tip_comment" class="tip">还能输入<em>1000</em>个字符</span>
+							<a data-report-click='{"mod":"1582594662_003","spm":"1001.2101.3001.4227","ab":"new"}'><input type="submit"
+									class="btn btn-sm btn-comment" value="发表评论"></a>
+				</div>
+			</div>
+		</form>
+		<input type="button" class="bt-comment-show" value="评论">
+	</div>
+	<div class="comment-list-container">
+		<a id="comments"></a>
+		<div class="comment-list-box">
+		</div>
+		<div id="commentPage" class="pagination-box d-none"></div>
+		<div class="opt-box text-center">
+			<div class="btn btn-sm btn-link-blue" id="btnMoreComment"></div>
+		</div>
+	</div>
+</div>            <div class="recommend-tit-mod">相关推荐</div>
+            <div class="recommend-box insert-baidu-box">
+                <div class="recommend-item-box clearfix" style="display:none"></div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/116134954" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/116134954" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					算法研究｜全新视角解读深度学习中的泛化
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">04-28</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					999
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/116134954" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">文 / Google Research 团队 Hanie Sedghi 和哈佛大学 Preetum Nakkiran如何理解泛化是深度学习领域尚未解决的基础问题之一。为什么使用有限训练数据集优化模型能使模型在预留测试集上取得良好表现？这一问题距今已有 50 多年的丰富历史，并在机器学习中得到广泛研究。如今有许多数学工具可以用来帮助研究人员了解某些模型的泛化能力。但遗憾的是，现有的大多数理论都无法应用到现代深度网络中，这些理论在现实环境中显得既空泛又不可预测。而理论和实践之间的差距 ...</div>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/116152827" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/116152827" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					社区分享｜TensorFlow Recommenders-Addons 开源啦！
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">04-26</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					889
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/116152827" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">发布人：戎海栋(腾讯微信看一看团队)、丁辰（阿里巴巴 PAI 团队）背景与现状推荐系统是机器学习的重要应用领域，能够根据用户偏好自动推送相关内容，比如展示商品，投放广告，推荐视频、新闻等多媒体内容等。在推荐系统领域，Embedding 已成为处理 ID 类稀疏特征的常用手段，作为一种&ldquo;函数映射&rdquo;，Embedding 通常将高维稀疏特征映射为低维稠密向量，再进行模型端到端训练。在 TensorFlow 框架中，全部以稠密 Tensor 为基本...</div>
+			</a>
+		</div>
+	</div>
+</div>
+		<dl id="recommend-item-box-tow" class="recommend-item-box type_blog clearfix">
+		</dl>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/115730556" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/115730556" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					稀疏推理如何加速移动设备与网页神经网络？
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">04-16</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					2788
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/115730556" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">文 / Artsiom Ablavatski 和 Marat Dukhan，软件工程师，Google Research设备端的神经网络推理能够以一种低延迟和注重隐私的方式，实现如姿势预测和背景模糊等各种实时应用。如通过使用带有 ML 加速库XNNPACK的TensorFlow Lite这样的 ML 推理框架，工程师可以在模型大小、推理速度和预测质量之间找到最佳平衡点，以便模型能适配于各种设备。	背景模糊等https://ai.googleblog.com/2020/10/backg...</div>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/115734335" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/115734335" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					活动｜想了解 TensorFlow 与强化学习？本周四「社区说」期待与你线上相会
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">04-15</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					109
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/115734335" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">2021 年 4 月 8 日，第一期「社区说」成功开启，很多小伙伴通过线上参与活动，聆听机器学习方向的谷歌开发者专家孔晓泉带来的分享与提出自己在技术学习中遇到的一些问题。错过的小伙伴可以了解第一场《Chatbot 框架：Rasa 》回顾。4 月 15 日（本周四），将继续由机器学习方向的谷歌开发者专家李锡涵为大家带来分享：主题：	强化学习基本概念和算法			使用 TensorFlow 和强化学习实现简易游戏 AI	关于社区说社区说 (Community Talks...</div>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/115691933" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/115691933" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					离散世界模型，带你轻松玩转 Atari 游戏
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">04-14</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					1558
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/115691933" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">文 / Google Research 学生研究员 Danijar Hafner得益于深度强化学习 (RL)，人工智能体能够随着时间的推移不断改进其决策。传统的无模型方法与环境交互，通过大量试错来学习预测不同情况下的成功动作。相较之下，深度 RL 的最新进展已经使得 基于模型的方法 能够从图像输入中学习精确的世界模型，并将其用于规划。这些世界模型可以从更少的交互中学习，推动离线数据的泛化，实现前瞻性探索，并允许在多个任务之间重复使用知识。	世界模型	https://wor...</div>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/115613368" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/115613368" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					TensorFlow Probability 联合分布变分推断工具，估计权重的贝叶斯可信区间更简单
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">04-12</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					4145
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/115613368" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">文 / Emily Fertig、Joshua V. Dillon、Wynn Vonnegut、Dave Moore和 TensorFlow Probability 团队本文将介绍TensorFlow Probability中新的联合分布变分推断工具，展示如何在回归模型中使用这些工具估计权重的贝叶斯可信区间。	TensorFlow Probabilityhttps://tensorflow.google.cn/probability/	概述变分推断(Variatio...</div>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/115481004" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/115481004" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					产品更新｜用于语音压缩的新型极低比特率编解码器，Lyra 长什么样？
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">04-09</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					1215
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/115481004" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">文 / 软件工程师 Alejandro Luebs 和 Chrome 产品经理 Jamieson Brettle通过语音和视频通话与他人在线联系逐渐成为日常生活的一部分，这得益于 WebRTC 等实时通信框架，而后者依靠高效的压缩技术和编解码器，解码或编码传输和存储的信号。数十年来，编解码器一直是媒体应用的重要组成部分，可使需要占用大量带宽的应用高效传输数据，支持用户随时随地进行高质量通信。因此，在开发视频和音频编解码器时，一项长期目标就是提高信号质量，减少数据使用，以及最大程度降低实时通...</div>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/115467891" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/115467891" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					3D 语义分割、目标检测、实例分割是什么神仙操作？TF 3D 技术让你一目了然
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">04-07</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					1262
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/115467891" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">文 / 研究员 Alireza Fathi 和 AI 实习生 Rui Huang，Google Research过去几年里，3D 传感器（如激光雷达、深度传感摄像头和雷达）越发普及，对于能够处理这些设备所捕获数据的场景理解技术，相应需求也在不断增加。此类技术可以让使用这些传感器的机器学习 (ML) 系统，如无人驾驶汽车和机器人，在现实世界中导航和运作，并在移动设备上创建改进的增强现实体验。最近，计算机视觉领域开始在 3D 场景理解方面取得良好进展，包括用于移动 3D 目标检测、透明目标检..</div>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/115372263" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/115372263" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					社区分享｜Arm 中国生态技术市场经理教你玩转 TFLite Micro 端云一体解决方案
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">04-02</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					2344
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/115372263" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">｜本文来自社区投稿与征集，作者 郑亚斌，Arm 中国生态技术市场经理。概述：TensorFlow Lite Micro 是 TensorFlow Lite 针对 AIOT 的轻量级 AI 引擎，用于在微控制器和其他资源受限的设备上运行机器学习模型。端云链接从 TencentOS Tiny 开始。1. 建立与转换模型由于嵌入式设备存储空间有限，因此限制了深度学习的应用，同时考虑到平台算力以及算子支持等因素，因此在模型设计以及部署阶段需充分了解硬件平台资源以及预期性能。本部...</div>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/113104864" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/113104864" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					【入门教程】TensorFlow 2 模型：深度强化学习
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">01-25</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					3103
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/113104864" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">文 /李锡涵，Google Developers Expert本文节选自《简单粗暴 TensorFlow 2》本文将介绍在 OpenAI 的 gym 环境下，使用 TensorFlow 实现 Q-learning 算法，从而玩倒立摆游戏的流程。深度强化学习 (DRL)强化学习（Reinforcement learning，RL）强调如何基于环境而行动，以取得最大化的预期利益。结合了深度学习技术后的强化学习（Deep Reinforcement learning，DRL）更是如...</div>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/112603942" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/112603942" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					【前沿研究】机器学习助力智能家居，支持 ESP32 的 TensorFlow Lite Micro 发布
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">01-20</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					853
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/112603942" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">客座博文 / Vikram Dattu、Aditya Patwardhan、Kedar Sovani，来自 Espressif SystemsESP32 简介：Wi-Fi MCU我们很高兴宣布设备端机器学习框架 TensorFlow Lite 已支持 ESP32 芯片组，可进一步减轻 TensorFlow Lite Micro 的工作负载，助力智能家居体验。 作为原型设计的优异载体，微控制器 ESP32 深受业余爱好者和技术极客欢迎，可对现实世界的数据/物体进行感知或修改，被广泛应用在...</div>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/112827042" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/112827042" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					【更新发布】TensorFlow Lite 针对自然语言处理的系列实用功能更新
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">01-19</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					1411
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/112827042" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">TensorFlow Lite 已被广泛用于许多应用领域，为手机、微控制器单元和 Edge TPU 等边缘设备提供机器学习功能。在为人们的生活提供便利和效率的所有热门应用中，&ldquo;自然语言理解 (NLP)&rdquo;是备受研究界和业界关注的关键领域之一。去年我们在TensorFlow World上演示了设备端问答用例后，引起了社区的浓厚兴趣，并且获得将更多此类 NLP 模型用于设备端推理的反馈。TensorFlow World 第二日演讲[第 50 分钟起]得益于这些反馈的启发，今天我们很高...</div>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/112603222" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/112603222" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					【入门教程】TensorFlow 2.0 模型：循环神经网络
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">01-18</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					1552
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/112603222" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">文 /李锡涵，Google Developers Expert本文节选自《简单粗暴 TensorFlow 2.0》上一篇文章中，我们介绍了在图像领域中广泛使用的卷积神经网络及其在 TensorFlow 2.0 中的实现。本文继续介绍另一种广泛流行的神经网络结构，即循环神经网络，内容如下：	以文本自动生成任务为例，介绍循环神经网络在 TensorFlow 2.0 中的实现方式；			为深度学习的入门者简介循环神经网络的原理。	使用 Keras 建立基于循环神...</div>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/112616753" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/112616753" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					【社区榜单】TensorFlow 社区双周问答贡献光荣榜（第三期）
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">01-14</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					1871
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/112616753" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">大家好！&ldquo;TensorFlow 开发者出道计划&rdquo; 持续火热进行中！在11月-1月，出道计划第一期是围绕&ldquo;如何入门 TensorFlow&rdquo; 这一话题展开的。我们在问答版块里，看到不少关于学习入门、报错的提问，都得到了来自社区专家的优质回答！（如果你也有这样的问题，快来 TensorFlow 社区&ldquo;问答&rdquo;版寻找答案吧！马上进入社区首页，点击右侧&ldquo;我要提问&rdquo;开始描述你的问题！更多问答玩法，点击指引一睹为快！）为了鼓励和奖赏认真创作解答的开发者，TensorFlow 特设&ldquo;社区双周问答贡献光荣榜&rdquo;。上...</div>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/112351862" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/112351862" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					【前沿研究】轻又快！开源 TensorFlow Lite 设备端推荐解决方案
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">01-13</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					1490
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/112351862" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">文 /Ellie Zhou、Tian Lin、Cong Li、Shuangfeng Li 以及 Sushant Prakash简介和动机我们很高兴为 TensorFlow Lite 开源了一个更轻量级的端到端解决方案：在设备端部署推荐模型，提供个性化、低延迟和高质量的推荐，同时还能保护用户隐私。在此，我们诚邀广大开发者使用我们的解决方案构建和训练设备端模型，实现全新的用户体验。高质量的个性化推荐对于许多应用至关重要，如音乐、视频、购物、应用、新闻等。目前，典型的推荐系统完全在服务器端...</div>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/112352764" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/112352764" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					【入门教程】​TensorFlow 2.0 模型：卷积神经网络
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">01-11</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					7469
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/112352764" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">文 /李锡涵，Google Developers Expert本文节选自《简单粗暴 TensorFlow 2.0》在《【入门教程】TensorFlow 2.0 模型：多层感知机》里，我们以多层感知机（Multilayer Perceptron）为例，总体介绍了 TensorFlow 2.0 的模型构建、训练、评估全流程。本篇文章则以在图像领域常用的卷积神经网络为主题，介绍以下内容：	如何使用 tf.keras 构建卷积神经网络模型；			如何在自己的项目中快速载入并使...</div>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/112225094" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/112225094" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					【更新发布】TensorFlow Lite 助力产品落地
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">01-07</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					2087
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/112225094" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">文 / 开发技术推广工程师 Khanh LeVietTensorFlow Lite是在边缘设备上运行 TensorFlow 模型推理的正式框架。TensorFlow Lite 部署在全球超过 40 亿台边缘设备上，且支持基于 Android、iOS 和 Linux 的物联网设备及微控制器。自 2017 年底 TensorFlow Lite 首次发布以来，我们一直在探索与改进，在保证可靠性的同时让更多开发者（无论机器学习领域的专家或初学者）都能参与进来，轻松上手与使用。本文中，我们将重点介绍最近发..</div>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/112182736" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/112182736" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					机器学习 Study Jam 第三季报名启动！组队通关，快乐 x 3！
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">01-05</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					1672
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/112182736" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1"></div>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/111867968" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/111867968" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					【入门教程】TensorFlow 2.0 模型：多层感知机
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">01-04</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					2168
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/111867968" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">文 /李锡涵，Google Developers Expert本文节选自《简单粗暴 TensorFlow 2.0》在 《【入门教程】TensorFlow 2.0 模型：模型类的建立》里，我们简要介绍了 TensorFlow 2.0 中建立模型类的方法。本文即以多层感知机（Multilayer Perceptron, MLP），或者说 &ldquo;多层全连接神经网络&rdquo; 为例，给出一个具体示例，详细介绍 TensorFlow 2.0 的模型构建、训练、评估的全流程。在这一部分，我们依次进行以下步骤...</div>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="recommend-item-box type_blog clearfix" data-url="https://blog.csdn.net/tensorflowforum/article/details/112005843" >
+	<div class="content-box">
+		<div class="content-blog display-flex">
+			<div class="title-box">
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/112005843" class="tit ellipsis-online ellipsis-online-1" target="_blank"  >
+					【社区榜单】TensorFlow 社区双周问答贡献光荣榜（第二期）
+				</a>
+			</div>
+			<div class="info-box display-flex">
+				<div class="info display-flex">
+					<span class="info-block time">12-31</span>
+					<span class="info-block read"><img class="read-img" src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					2262
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="desc-box">
+			<a href="https://blog.csdn.net/tensorflowforum/article/details/112005843" target="_blank"  >
+				<div class="desc ellipsis-online ellipsis-online-1">大家好！&ldquo;TensorFlow 开发者出道计划&rdquo; 持续火热进行中！在11月-1月，出道计划第一期是围绕&ldquo;如何入门 TensorFlow&rdquo; 这一话题展开的。我们在问答版块里，看到不少关于学习入门、报错的提问，都得到了来自社区专家的优质回答！（如果你也有这样的问题，快来 TensorFlow 社区&ldquo;问答&rdquo;版寻找答案吧！马上进入社区首页，点击右侧&ldquo;我要提问&rdquo;开始描述你的问题！更多问答玩法，点击指引一睹为快！）为了鼓励和奖赏认真创作解答的开发者，TensorFlow 特设&ldquo;社区双周问答贡献光荣榜&rdquo;。上...</div>
+			</a>
+		</div>
+	</div>
+</div>
+            </div>
+<div class="blog-footer-bottom" style="margin-top:10px;"></div>
+<script src="https://g.csdnimg.cn/common/csdn-footer/csdn-footer.js" data-isfootertrack="false" type="text/javascript"></script>
+<script type="text/javascript">
+    window.csdn.csdnFooter.options = {
+        el: '.blog-footer-bottom',
+        type: 2
+    }
+</script>        </main>
+<aside class="blog_container_aside">
+	<div id="asideProfile" class="aside-box">
+    <div class="profile-intro d-flex">
+        <div class="avatar-box d-flex justify-content-center flex-column">
+            <a href="https://blog.csdn.net/tensorflowforum" data-report-click='{"mod":"popu_379","spm":"1001.2101.3001.4121","dest":"https://blog.csdn.net/tensorflowforum","ab":"new"}'>
+                <img src="https://profile.csdnimg.cn/6/3/1/3_tensorflowforum" class="avatar_pic">
+            </a>
+        </div>
+        <div class="user-info d-flex flex-column profile-intro-name-box">
+            <div class="profile-intro-name-boxTop">
+                <a href="https://blog.csdn.net/tensorflowforum" class="" id="uid" title="TensorFlow 社区" data-report-click='{"mod":"popu_379","spm":"1001.2101.3001.4122","dest":"https://blog.csdn.net/tensorflowforum","ab":"new"}'>
+                    <span class="name " username="tensorflowforum">TensorFlow 社区</span>
+                </a>
+                <span>
+                </span>
+                <span class="flag expert-blog">
+                <span class="bubble">CSDN认证博客专家</span>
+                </span>
+                <span class="flag company-blog">
+                <img class="identity" src="https://csdnimg.cn/release/blogv2/dist/mobile/img/enterpriseNew.png"/>
+                <span class="bubble">CSDN认证企业博客</span>
+                </span>
+            </div>
+            <div class="profile-intro-name-boxFooter">
+            </div>
+        </div>
+    </div>
+    <div class="data-info d-flex item-tiling">
+        <dl class="text-center" title="52">
+            <a href="https://blog.csdn.net/tensorflowforum" data-report-click='{"mod":"1598321000_001","spm":"1001.2101.3001.4310"}' data-report-query="t=1">  
+                <dt><span class="count">52</span></dt>
+                <dd class="font">原创</dd>
+            </a>
+        </dl>
+        <dl class="text-center" data-report-click='{"mod":"1598321000_002","spm":"1001.2101.3001.4311"}' title="1398">
+            <a href="https://blog.csdn.net/rank/list/weekly" target="_blank">
+                <dt><span class="count">1398</span></dt>
+                <dd class="font">周排名</dd>
+            </a>
+        </dl>
+        <dl class="text-center" title="70623">
+            <a href="https://blog.csdn.net/rank/list/total" data-report-click='{"mod":"1598321000_003","spm":"1001.2101.3001.4312"}' target="_blank">
+                <dt><span class="count">7万+</span></dt>
+                <dd class="font">总排名</dd>
+            </a>
+        </dl>
+        <dl class="text-center" style="min-width:58px" title="184662">  
+            <dt><span class="count">18万+</span></dt>
+            <dd>访问</dd>
+        </dl>
+        <dl class="text-center" title="4级,点击查看等级说明">
+            <dt><a href="https://blog.csdn.net/blogdevteam/article/details/103478461" target="_blank">
+                <img class="level" src="https://csdnimg.cn/identity/blog4.png">
+            </a>
+            </dt>
+            <dd>等级</dd>
+        </dl>
+    </div>
+    <div class="item-rank"></div>
+    <div class="data-info d-flex item-tiling">
+        <dl class="text-center" title="1242">
+            <dt><span class="count">1242</span></dt>
+            <dd>积分</dd>
+        </dl>
+         <dl class="text-center" id="fanBox" title="30759">
+            <dt><span class="count" id="fan">3万+</span></dt>
+            <dd>粉丝</dd>
+        </dl>
+        <dl class="text-center" title="179">
+            <dt><span class="count">179</span></dt>
+            <dd>获赞</dd>
+        </dl>
+        <dl class="text-center" title="146">
+            <dt><span class="count">146</span></dt>
+            <dd>评论</dd>
+        </dl>
+        <dl class="text-center" title="514">
+            <dt><span class="count">514</span></dt>
+            <dd>收藏</dd>
+        </dl>
+    </div>
+    <div class="aside-box-footer" data-report-view='{"spm":"3001.4296"}'>
+        <div class="badge-box d-flex">
+            <div class="badge d-flex">
+                <div class="icon-badge" title="持之以恒">
+                    <div class="mouse-box">
+                        <img class="medal-img" data-report-click='{"spm":"3001.4296"}' src="https://csdnimg.cn/medal/chizhiyiheng@240.png" alt="持之以恒">
+                    </div>
+                </div>
+                <div class="icon-badge" title="1024勋章">
+                    <div class="mouse-box">
+                        <img class="medal-img" data-report-click='{"spm":"3001.4296"}' src="https://csdnimg.cn/medal/1024@240.png" alt="1024勋章">
+                    </div>
+                </div>
+                <div class="icon-badge" title="勤写标兵Lv2">
+                    <div class="mouse-box">
+                        <img class="medal-img" data-report-click='{"spm":"3001.4296"}' src="https://csdnimg.cn/medal/qixiebiaobing2@240.png" alt="勤写标兵Lv2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="profile-intro-name-boxOpration">
+        <div class="opt-letter-watch-box">
+        <a class="bt-button personal-letter" href="https://im.csdn.net/chat/tensorflowforum" target="_blank" rel="noopener">私信</a>
+        </div>
+        <div class="opt-letter-watch-box"> 
+            <a class="personal-watch bt-button" id="btnAttent" >关注</a>  
+        </div>
+    </div>
+</div>
+<div id="asideSearchArticle" class="aside-box">
+	<div class="aside-content search-comter">
+    <div class="aside-search aside-search-blog">         
+        <input type="text" class="input-serch-blog" name="" autocomplete="off" value="" id="search-blog-words" placeholder="搜博主文章">
+        <a class="btn-search-blog">
+                    <img src="//csdnimg.cn/cdn/content-toolbar/csdn-sou.png?v=1587021042">
+        </a>
+    </div>
+    </div>
+</div>
+
+
+<div id="asideHotArticle" class="aside-box">
+	<h3 class="aside-title">热门文章</h3>
+	<div class="aside-content">
+		<ul class="hotArticle-list">
+			<li>
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/109832059" target="_blank"  data-report-click='{"mod":"popu_541","spm":"1001.2101.3001.4139","dest":"https://blog.csdn.net/tensorflowforum/article/details/109832059","ab":"new"}'>
+				“TensorFlow 开发者出道计划”全攻略，玩转社区看这里！
+					<img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					<span class="read">21709</span>
+                </a>
+			</li>
+			<li>
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/109822833" target="_blank"  data-report-click='{"mod":"popu_541","spm":"1001.2101.3001.4139","dest":"https://blog.csdn.net/tensorflowforum/article/details/109822833","ab":"new"}'>
+				迈出出道第一步，下一个社区之星就是你！（资深开发者必看）
+					<img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					<span class="read">11035</span>
+                </a>
+			</li>
+			<li>
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/111032130" target="_blank"  data-report-click='{"mod":"popu_541","spm":"1001.2101.3001.4139","dest":"https://blog.csdn.net/tensorflowforum/article/details/111032130","ab":"new"}'>
+				【必看】TensorFlow 2.4.0 候选版本发布
+					<img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					<span class="read">9292</span>
+                </a>
+			</li>
+			<li>
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/109239907" target="_blank"  data-report-click='{"mod":"popu_541","spm":"1001.2101.3001.4139","dest":"https://blog.csdn.net/tensorflowforum/article/details/109239907","ab":"new"}'>
+				【社区分享】从零开始学习 TinyML，建立 TensorFlow 深度学习模型（技术优化篇）
+					<img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					<span class="read">8809</span>
+                </a>
+			</li>
+			<li>
+				<a href="https://blog.csdn.net/tensorflowforum/article/details/109830566" target="_blank"  data-report-click='{"mod":"popu_541","spm":"1001.2101.3001.4139","dest":"https://blog.csdn.net/tensorflowforum/article/details/109830566","ab":"new"}'>
+				有问有答，全能社区由你来建！TensorFlow 问答版块怎么玩？
+					<img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt="">
+					<span class="read">7927</span>
+                </a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div id="asideCategory" class="aside-box ">
+    <h3 class="aside-title">分类专栏</h3>
+    <div class="aside-content">
+        <ul>
+            <li class="">
+                <a class="clearfix" target="_blank" href="https://blog.csdn.net/tensorflowforum/category_10713603.html" data-report-click='{"mod":"popu_537","spm":"1001.2101.3001.4137","strategy":"pc付费专栏左侧入口","dest":"https://blog.csdn.net/tensorflowforum/category_10713603.html","ab":"new"}'>
+                    <img src="https://img-blog.csdnimg.cn/20201014180756927.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'">
+                    <span class="title oneline">
+                        <span class="text">TensorFlow</span>
+                    </span>
+                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="asideNewComments" class="aside-box">
+    <h3 class="aside-title">最新评论</h3>
+    <div class="aside-content">
+        <ul class="newcomment-list">
+            <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/tensorflowforum/article/details/116134954#comments_16204588" data-report-click='{"mod":"popu_542","spm":"1001.2101.3001.4231","dest":"https://blog.csdn.net/tensorflowforum/article/details/116134954#comments_16204588","ab":"new"}' data-report-view='{"mod":"popu_542","spm":"1001.2101.3001.4231","dest":"https://blog.csdn.net/tensorflowforum/article/details/116134954#comments_16204588","ab":"new"}'>算法研究｜全新视角解读深度学习中的泛化</a>
+                <p class="comment ellipsis">
+                    <a href="https://blog.csdn.net/kimol_justdo" class="user-name" target="_blank">不正经的kimol君: </a>
+                    <span class="code-comments">忍不住就是一个赞，写得很棒，欢迎回赞哦~</span>
+                </p>
+            </li>
+            <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/tensorflowforum/article/details/116134954#comments_16176065" data-report-click='{"mod":"popu_542","spm":"1001.2101.3001.4231","dest":"https://blog.csdn.net/tensorflowforum/article/details/116134954#comments_16176065","ab":"new"}' data-report-view='{"mod":"popu_542","spm":"1001.2101.3001.4231","dest":"https://blog.csdn.net/tensorflowforum/article/details/116134954#comments_16176065","ab":"new"}'>算法研究｜全新视角解读深度学习中的泛化</a>
+                <p class="comment ellipsis">
+                    <a href="https://blog.csdn.net/Anenan" class="user-name" target="_blank">一个抓手: </a>
+                    <span class="code-comments">写的好啊，原创不易必须支持一下<img src="https://g.csdnimg.cn/static/face/emoji/064.png" alt='表情包' ><img src="https://g.csdnimg.cn/static/face/emoji/064.png" alt='表情包' ></span>
+                </p>
+            </li>
+            <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/tensorflowforum/article/details/116152827#comments_16165349" data-report-click='{"mod":"popu_542","spm":"1001.2101.3001.4231","dest":"https://blog.csdn.net/tensorflowforum/article/details/116152827#comments_16165349","ab":"new"}' data-report-view='{"mod":"popu_542","spm":"1001.2101.3001.4231","dest":"https://blog.csdn.net/tensorflowforum/article/details/116152827#comments_16165349","ab":"new"}'>社区分享｜TensorFlow Recommenders-Addons 开源啦！</a>
+                <p class="comment ellipsis">
+                    <a href="https://blog.csdn.net/kimol_justdo" class="user-name" target="_blank">不正经的kimol君: </a>
+                    <span class="code-comments">在最美的年华，做最好的自己，加油！</span>
+                </p>
+            </li>
+            <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/tensorflowforum/article/details/115730556#comments_15988566" data-report-click='{"mod":"popu_542","spm":"1001.2101.3001.4231","dest":"https://blog.csdn.net/tensorflowforum/article/details/115730556#comments_15988566","ab":"new"}' data-report-view='{"mod":"popu_542","spm":"1001.2101.3001.4231","dest":"https://blog.csdn.net/tensorflowforum/article/details/115730556#comments_15988566","ab":"new"}'>稀疏推理如何加速移动设备与网页神经网络？</a>
+                <p class="comment ellipsis">
+                    <a href="https://blog.csdn.net/qq_54392640" class="user-name" target="_blank">！____ ！: </a>
+                    <span class="code-comments">我在大佬的评论区瑟瑟发抖,希望能引起注意并回访我的博客哈哈</span>
+                </p>
+            </li>
+            <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/tensorflowforum/article/details/115730556#comments_15987086" data-report-click='{"mod":"popu_542","spm":"1001.2101.3001.4231","dest":"https://blog.csdn.net/tensorflowforum/article/details/115730556#comments_15987086","ab":"new"}' data-report-view='{"mod":"popu_542","spm":"1001.2101.3001.4231","dest":"https://blog.csdn.net/tensorflowforum/article/details/115730556#comments_15987086","ab":"new"}'>稀疏推理如何加速移动设备与网页神经网络？</a>
+                <p class="comment ellipsis">
+                    <a href="https://blog.csdn.net/Taoist9" class="user-name" target="_blank">Taoist9: </a>
+                    <span class="code-comments">顶</span>
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="asideArchive" class="aside-box" style="display:block!important; width:300px;">
+    <h3 class="aside-title">最新文章</h3>
+    <div class="aside-content">
+        <ul class="inf_list clearfix">
+            <li class="clearfix">
+            <a href="https://blog.csdn.net/tensorflowforum/article/details/116152827" target="_blank" data-report-click='{"mod":"popu_382","spm":"1001.2101.3001.4136","dest":"https://blog.csdn.net/tensorflowforum/article/details/116152827","ab":"new"}' data-report-view='{"mod":"popu_382","dest":"https://blog.csdn.net/tensorflowforum/article/details/116152827","ab":"new"}'>社区分享｜TensorFlow Recommenders-Addons 开源啦！</a>
+            </li>
+            <li class="clearfix">
+            <a href="https://blog.csdn.net/tensorflowforum/article/details/116134954" target="_blank" data-report-click='{"mod":"popu_382","spm":"1001.2101.3001.4136","dest":"https://blog.csdn.net/tensorflowforum/article/details/116134954","ab":"new"}' data-report-view='{"mod":"popu_382","dest":"https://blog.csdn.net/tensorflowforum/article/details/116134954","ab":"new"}'>算法研究｜全新视角解读深度学习中的泛化</a>
+            </li>
+            <li class="clearfix">
+            <a href="https://blog.csdn.net/tensorflowforum/article/details/115734335" target="_blank" data-report-click='{"mod":"popu_382","spm":"1001.2101.3001.4136","dest":"https://blog.csdn.net/tensorflowforum/article/details/115734335","ab":"new"}' data-report-view='{"mod":"popu_382","dest":"https://blog.csdn.net/tensorflowforum/article/details/115734335","ab":"new"}'>活动｜想了解 TensorFlow 与强化学习？本周四「社区说」期待与你线上相会</a>
+            </li>
+        </ul>
+        <div class="archive-bar"></div>
+        <div class="archive-box">
+                <div class="archive-list-item"><a href="https://blog.csdn.net/tensorflowforum/article/month/2021/04" target="_blank" data-report-click='{"mod":"popu_538","spm":"1001.2101.3001.4138","ab":"new","dest":""}'><span class="year">2021年</span><span class="num">20篇</span></a></div>
+                <div class="archive-list-item"><a href="https://blog.csdn.net/tensorflowforum/article/month/2020/12" target="_blank" data-report-click='{"mod":"popu_538","spm":"1001.2101.3001.4138","ab":"new","dest":""}'><span class="year">2020年</span><span class="num">35篇</span></a></div>
+        </div>
+    </div>
+</div>
+	<div id="footerRightAds" class="isShowFooterAds">
+		<div class="aside-box">
+			<div id="kp_box_57" data-pid="57"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- PC-博客详情页-左下视窗（300*600） -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1076724771190722"
+     data-ad-slot="1173711872"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script><img class="pre-img-lasy" data-src="https://kunyu.csdn.net/1.png?p=57&a=2488&c=0&k=&spm=1001.2101.3001.5001&d=1&t=3&u=bb16c6450d98488ab392eac71611bc6b" style="display: block;width: 0px;height: 0px;"></div>
+		</div>
+	</div>
+    <!-- 详情页显示目录 -->
+<!--文章目录-->
+<div id="asidedirectory" class="aside-box">
+    <div class='groupfile' id="directory">
+        <h3 class="aside-title">目录</h3>
+        <div class="align-items-stretch group_item">
+            <div class="pos-box">
+            <div class="scroll-box">
+                <div class="toc-box"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</aside>
+<script>
+	$("a.flexible-btn").click(function(){
+		$(this).parents('div.aside-box').removeClass('flexible-box');
+		$(this).parents("p.text-center").remove();
+	})
+</script>
+<script type="text/javascript"  src="https://g.csdnimg.cn/user-tooltip/2.4/user-tooltip.js"></script>
+<script type="text/javascript"  src="https://g.csdnimg.cn/user-medal/1.0.6/user-medal.js"></script>    </div>
+<div class="recommend-right  align-items-stretch clearfix" id="rightAside" data-type="recommend">
+    <aside class="recommend-right_aside">
+        <div id="recommend-right" >
+                        <div class='flex-column aside-box groupfile' id="groupfile">
+                <div class="groupfile-div">
+                <h3 class="aside-title">目录</h3>
+                <div class="align-items-stretch group_item">
+                    <div class="pos-box">
+                        <div class="scroll-box">
+                            <div class="toc-box"></div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class='aside-box kind_person d-flex flex-column'>
+                    <h3 class="aside-title">分类专栏</h3>
+                    <div class="align-items-stretch kindof_item" id="kind_person_column">
+                        <div class="aside-content">
+                            <ul>
+                                <li class="">
+                                    <a class="clearfix" target="_blank" href="https://blog.csdn.net/tensorflowforum/category_10713603.html" data-report-click='{"mod":"popu_537","spm":"1001.2101.3001.4137","strategy":"pc付费专栏左侧入口","dest":"https://blog.csdn.net/tensorflowforum/category_10713603.html","ab":"new"}'>
+                                        <img src="https://img-blog.csdnimg.cn/20201014180756927.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'">
+                                        <span class="title oneline">
+                                            <span class="text">TensorFlow</span>
+                                        </span>
+                                        <span class="count float-right">2篇</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </aside>
+</div>
+
+</div>
+<div class="mask-dark"></div>
+<script type="text/javascript">
+    var timert = setInterval(function(){
+      sideToolbar = $(".csdn-side-toolbar");
+      if (sideToolbar.length > 0) {
+        sideToolbar.css('cssText','bottom:64px !important;')
+        clearInterval(timert);
+      }
+    }, 200);
+</script>
+<script>
+    var articleId = 116135250;
+    var commentscount = 0;
+    var curentUrl = "https://blog.csdn.net/tensorflowforum/article/details/116135250";
+    var myUrl = "https://my.csdn.net/";
+    var highlight = [];
+    var isRecommendModule = true;
+    var isBaiduPre = false;
+    var baiduCount = 0;
+    var share_card_url = "https://blog.csdn.net/tensorflowforum/article/shareArticleCardPage?article_id=116135250"
+	var articleType = 1;
+    var baiduKey = "最新进展｜TensorFlow Quantum 一岁啦！";
+    var userNewReport = true;
+    var needInsertBaidu = false;
+    var recommendRegularDomainArr = ["blog.csdn.net/.+/article/details/","download.csdn.net/download/","edu.csdn.net/course/detail/","ask.csdn.net/questions/","bbs.csdn.net/topics/","www.csdn.net/gather_.+/"]
+    var codeStyle = "";
+    var baiduSearchType = "title";
+    var canRead = true;
+    var blogMoveHomeArticle = false;
+    var showPcWindowAd = false;
+    var showSearchText = "";
+    var linkPage = true;
+    var articleSource = 1;
+    var articleReport = '{"pid": "blog", "spm":"1001.2101"}';
+</script>
+<script src="https://csdnimg.cn/public/sandalstrap/1.4/js/sandalstrap.min.js"></script>
+<div class="skin-boxshadow"></div>
+<div style="display:none;">
+	<img src="" onerror='setTimeout(function(){if(!/(csdn.net|iteye.com|baiducontent.com|googleusercontent.com|360webcache.com|sogoucdn.com|bingj.com|baidu.com)$/.test(window.location.hostname)){window.location.href="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x63\x73\x64\x6e\x2e\x6e\x65\x74"}},3000);'>
+</div>
+</body>
+    <!-- 富文本柱状图  -->
+	<link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.6.12/ckeditor/plugins/chart/chart.css"/>
+	<script type="text/javascript" src="https://csdnimg.cn/release/blog_editor_html/release1.6.12/ckeditor/plugins/chart/lib/chart.min.js"></script>
+    <script type="text/javascript" src="https://csdnimg.cn/release/blog_editor_html/release1.6.12/ckeditor/plugins/chart/widget2chart.js"></script>
+<script src="https://csdnimg.cn/release/blogv2/dist/components/js/pc_wap_highlight-db1e81323a.min.js" type="text/javascript"></script>
+<script src="https://csdnimg.cn/release/blogv2/dist/components/js/pc_wap_common-906586e915.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.6.12/ckeditor/plugins/codesnippet/lib/highlight/styles/atom-one-light.css">
+<script>
+ // 全局声明
+ if (window.csdn === undefined) {
+      window.csdn = {};
+    }
+    window.csdn.sideToolbar = {
+        options: {
+            report:{
+                isShow: true,
+            },
+            qr: {
+                isShow: false,
+            },
+            guide: {
+                isShow: true
+            }
+        }
+    }
+    $(function(){
+        $(document).on('click',"a.option-box[data-type='report']",function() {
+            window.csdn.userLogin.loadAjax(function(res){
+                if(userNewReport){
+                    showReportNew(false,articleTitles);
+                }else{
+                    showReport(false,articleTitles);
+                }
+            })
+        });
+    })
+</script>
+<script src="https://csdnimg.cn/release/download/old_static/js/qrcode.js"></script>
+<script src="https://csdnimg.cn/release/blogv2/dist/pc/js/common-cc21cbaf03.min.js" type="text/javascript"></script>
+<script src="https://csdnimg.cn/release/blogv2/dist/pc/js/detail-f1051f3870.min.js" type="text/javascript"></script>
+<script src="https://g.csdnimg.cn/user-ordercart/1.0.6/user-ordercart.js" type="text/javascript"></script>
+<script src="https://csdnimg.cn/release/blogv2/dist/pc/js/column-78261cfea6.min.js" type="text/javascript"></script>
+<script src="https://g.csdnimg.cn/side-toolbar/3.0/side-toolbar.js" type="text/javascript"></script>
+<script src="https://g.csdnimg.cn/common/shop-window-v2/shop-window.js" type="text/javascript"></script>
+<script>
+    var shopUserName = username;
+    ;$(function(){
+        window.csdn.shop.show({
+            userName: shopUserName,
+            topEl: $("#csdn-shop-window-top"),
+            bottomEl: $("#csdn-shop-window"),
+            callBack: function(res){
+                if(!res.top){
+                    $("#blogColumnPayAdvert").css({"display":"block"})
+                    $("#csdn-shop-window-top").css({"display":"none"})
+                }
+            }
+        })
+    })
+</script>
+<script src="https://g.csdnimg.cn/copyright/1.0.3/copyright.js" type="text/javascript"></script>
+<script>
+    $(".MathJax").remove();
+    if ($('div.markdown_views pre.prettyprint code.hljs').length > 0) {
+        $('div.markdown_views')[0].className = 'markdown_views';
+    }
+</script>
+<script type="text/javascript" src="https://csdnimg.cn/release/blog_mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            "HTML-CSS": {
+                    linebreaks: { automatic: true, width: "94%container" },
+                    imageFont: null
+            },
+            tex2jax: {
+                preview: "none",
+                ignoreClass:"title-article"
+            },
+            mml2jax: {
+                preview: 'none'
+            }
+    });
+</script>
+<script type="text/javascript" crossorigin src="https://g.csdnimg.cn/user-login/2.3.2/user-login.js"></script>
+<script type="text/javascript" crossorigin src="https://g.csdnimg.cn/login-box/1.1.4/login-box.js"></script></html>
