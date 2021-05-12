@@ -5,6 +5,8 @@ using System.Xml.Serialization;
 using System.IO;
 using OrderManager;
 using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OrderManager
 {
@@ -12,15 +14,24 @@ namespace OrderManager
     [Serializable]
     public class Order
     {
-        public string Id { set; get; }
+        public static int IdCounter = 0;
+        [Key]
+        public int OrderId { set; get; }
         public double Cost { set; get; }
         public string Client { set; get; }
-        public virtual List<OrderDetial> merchandise { set; get; }
+        public List<OrderDetial> Merchandise { set; get; }
 
-        public Order() { }
-        public Order(string Id, string Client)
+        public Order()
         {
-            this.Id = Id;
+            IdCounter += 1;
+            this.OrderId = IdCounter;
+            this.Cost = 0;
+            this.Client = "unknown";
+        }
+        public Order(string Client)
+        {
+            IdCounter += 1;
+            this.OrderId = IdCounter;
             this.Cost = 0;
             this.Client = Client;
         }
@@ -28,7 +39,7 @@ namespace OrderManager
         public override bool Equals(object obj)
         {
             Order temp = obj as Order;
-            if(this.Id == temp.Id)
+            if(this.OrderId == temp.OrderId)
             {
                 return true;
             }
@@ -42,16 +53,19 @@ namespace OrderManager
         [Serializable]
     public class OrderDetial
     {
+        public static int IdCounter = 0;
+        [Key]
+        public int DetialId { set; get; }
         public string Name { set; get; }
         public double SingleCost { set; get; }
         public int Quantity { get; set; }
         public double TotalCost { get; set; }
-
-        public virtual Order order { set; get; }
-
-        public OrderDetial() { }
+        public virtual Order Order { set; get; }
+        
         public OrderDetial(string Name, double SingleCost,int Quantity)
         {
+            IdCounter += 1;
+            this.DetialId = IdCounter;
             this.Name = Name;
             this.SingleCost = SingleCost;
             this.Quantity = Quantity;
@@ -65,7 +79,7 @@ namespace OrderManager
     public class OrderServices
     {
       
-        //public  List<Order> orders = new List<Order>();//创建订单List，用于存储订单
+        
         private static OrderServices OrderManager;
         
         public static OrderServices getManager()
@@ -79,14 +93,17 @@ namespace OrderManager
         private OrderServices() { }
         public void AddOrder(Order order)//添加订单
         {
-            using(var orderDb = new OrderDbContext())
+            if (order != null)
             {
-                orderDb.Orders.Add(order);
-                orderDb.SaveChanges();
+                using (var orderDb = new OrderDbContext())
+                {
+                    orderDb.Orders.Add(order);
+                    orderDb.SaveChanges();
+                }
             }
         }
 
-        public void ReviseOrder(Order oldOrder,Order newOrder)
+        public void ReviseOrder(Order oldOrder,Order newOrder)//修改订单
         {
             using (var context = new OrderDbContext())
             {
@@ -96,7 +113,7 @@ namespace OrderManager
                     var order = context.Entry(oldOrder).Entity;
                     order.Client = newOrder.Client;
                     order.Cost = newOrder.Cost;
-                    order.merchandise = newOrder.merchandise;
+                    order.Merchandise = newOrder.Merchandise;
                 }
             }
         }
@@ -114,24 +131,41 @@ namespace OrderManager
 
        
 
-        public  void AddMerchandise(Order order,OrderDetial merchandise)
+        public  void AddMerchandise(Order order,OrderDetial merchandise)//添加商品明细
         {
-            order.merchandise.Add(merchandise);
-            order.Cost += merchandise.TotalCost;
+            if (merchandise != null)
+            {
+                using (var context = new OrderDbContext())
+                {
+                    //获取对应的实体
+                    var target = context.Entry(order).Entity;
+                    //为对应的Order添加明细
+                    target.Merchandise.Add(merchandise);
+                    context.SaveChanges();
+                }
+            }
         }
         public void DelMerchandise(Order order,OrderDetial merchandise)
         {
-            if (order.merchandise.Contains(merchandise))
+            if (merchandise != null)
             {
-                order.merchandise.Remove(merchandise);
-                order.Cost -= merchandise.TotalCost;
+                using (var context = new OrderDbContext())
+                {
+                    //获取对应的实体
+                    var target = context.Entry(order).Entity;
+                    if (target.Merchandise.Contains(merchandise))
+                    {
+                        target.Merchandise.Remove(merchandise);
+                        context.SaveChanges();
+                    }
+                }
             }
         }
         //查找订单
-        public IEnumerable<Order> QueryOrderById(string id)
+        public IEnumerable<Order> QueryOrderById(int id)
         {
              using(var context = new OrderDbContext()){
-                var query = context.Orders.Where(order => order.Id == id);
+                var query = context.Orders.Where(order => order.OrderId == id);
                 return query;
             }
         }

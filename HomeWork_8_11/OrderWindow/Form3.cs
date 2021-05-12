@@ -17,9 +17,9 @@ namespace OrderWindow
             InitializeComponent();            
             order = target;
             textBox_Client.Text = order.Client;
-            textBox_ID.Text = order.Id;
+            textBox_ID.Text = $"order.OrderId";
             label_TotalCost.Text = order.Cost.ToString();
-            bindingSource_OrderDetial.DataSource = order.merchandise;
+            bindingSource_OrderDetial.DataSource = order.Merchandise;
         }
      
         protected override void AddOrder()

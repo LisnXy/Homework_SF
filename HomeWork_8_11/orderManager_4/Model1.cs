@@ -13,15 +13,15 @@ namespace OrderManager
         //如果您想要针对其他数据库和/或数据库提供程序，请在应用程序配置文件中修改“Model1”
         //连接字符串。
         public OrderDbContext()
-            : base("name=Model1")
+            : base("name=conn")
         {
         }
 
         //为您要在模型中包含的每种实体类型都添加 DbSet。有关配置和使用 Code First  模型
         //的详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=390109。
 
-        public DbSet<Order> Orders;
-        public DbSet<OrderDetial> OrderDetials;
+        public DbSet<Order> Orders { set; get; }
+        public DbSet<OrderDetial> OrderDetials { set; get; }
     }
 
     //public class MyEntity

@@ -18,7 +18,10 @@ namespace OrderWindow
         public Manager()
         {
             InitializeComponent();
-            orderManager.AddOrder(new Order("1", "张三"));
+            //生成一个订单
+            var order = new Order("张三");
+            order.Merchandise.Add(new OrderDetial("瓜子", 2.0, 3));
+            orderManager.AddOrder(order);
             dataGridView_Order.ReadOnly = true;
         }
 
@@ -84,7 +87,7 @@ namespace OrderWindow
             switch (comboBox_Query.SelectedIndex)
             {
                 case 0: { 
-                        bindingSource_Order.DataSource = orderManager.QueryOrderById(textBox_Query.Text);
+                        bindingSource_Order.DataSource = orderManager.QueryOrderById(Convert.ToInt32(textBox_Query.Text));
                         break;
                     }
                 case 1:

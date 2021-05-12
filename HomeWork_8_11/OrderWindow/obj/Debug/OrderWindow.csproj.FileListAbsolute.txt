@@ -62,3 +62,6 @@ C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_8_11\OrderWindow\bin\Debu
 C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_8_11\OrderWindow\bin\Debug\MySql.Data.xml
 C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_8_11\OrderWindow\bin\Debug\MySql.Data.EntityFramework.xml
 C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_8_11\OrderWindow\obj\Debug\OrderWindow.csproj.CopyComplete
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_8_11\OrderWindow\bin\Debug\EntityFramework.dll
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_8_11\OrderWindow\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Lisn\Documents\WorkSpace\Homework_SF\HomeWork_8_11\OrderWindow\bin\Debug\EntityFramework.SqlServer.xml

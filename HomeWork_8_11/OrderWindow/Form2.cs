@@ -23,7 +23,7 @@ namespace OrderWindow
                 order = new Order();
             }
             dataGridView_Detials.ReadOnly = true;
-            bindingSource_OrderDetial.DataSource = order.merchandise;            
+            bindingSource_OrderDetial.DataSource = order.Merchandise;            
         }
        
 
@@ -57,7 +57,7 @@ namespace OrderWindow
 
         protected void textBox_ID_TextChanged(object sender, EventArgs e)
         {
-            order.Id = textBox_ID.Text;
+            order.OrderId = Convert.ToInt32(textBox_ID.Text);
         }
 
         protected void textBox_Client_TextChanged(object sender, EventArgs e)
