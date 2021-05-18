@@ -27,6 +27,7 @@ namespace OrderManager
             this.OrderId = IdCounter;
             this.Cost = 0;
             this.Client = "unknown";
+            this.Merchandise = new List<OrderDetial>();
         }
         public Order(string Client)
         {
@@ -34,6 +35,7 @@ namespace OrderManager
             this.OrderId = IdCounter;
             this.Cost = 0;
             this.Client = Client;
+            this.Merchandise = new List<OrderDetial>();
         }
 
         public override bool Equals(object obj)
